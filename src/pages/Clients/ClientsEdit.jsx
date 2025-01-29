@@ -1,31 +1,41 @@
 import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import Clients from "../../data/clients";
+import "react-responsive-combo-box/dist/index.css";
+import Companies from "../../data/companies";
+import { Combobox } from "../../components/Combobox";
 
-export default function ClientEdit() {
+export default function ClientCreate() {
+  const location = useLocation();
+  const { id } = useParams(); // Récupère l'ID depuis l'URL
+  const clientFromState = location.state?.company; // Essaie d'obtenir l'objet `company` passé dans le state
+
+  // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Companies`
+  const client =
+    clientFromState || Clients.find((comp) => comp.id === parseInt(id));
+  console.log("the company ::: ", client);
+
+  if (!client) {
+    return <div>Entreprise non trouvée</div>; // Si aucune entreprise n'est trouvée, afficher un message d'erreur
+  }
+
   const [formData, setFormData] = useState({
-    siret: "",
-    address: "",
-    legalName: "",
-    hubspotId: "",
-    phoneNumber: "",
-    sector: "",
-    tradeName: "",
-    logo: null, // On stocke un fichier pour le logo
+    id: client.id || "", // Ajouté pour correspondre à l'ID unique du client
+    nom_du_client: client.nom_du_client || "",
+    prenom_du_client: client.prenom_du_client || "",
+    telephone: client.telephone || "",
+    entreprise: client.entreprise || "",
+    derniere_modification: client.derniere_modification || "",
+    hubspot_id: client.hubspot_id || "",
   });
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type === "file") {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: files[0], // On prend le premier fichier sélectionné
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -37,165 +47,115 @@ export default function ClientEdit() {
   return (
     <div className="flex flex-col items-start w-full gap-12">
       <div className="flex items-center gap-2">
-        <a href="/companies" className="text-custom-dark-grey">
-          Entreprises
+        <a href="/clients" className="text-custom-dark-grey">
+          Clients
         </a>
         <ChevronRight className="size-4" />
-        <span className="text-custom-black">
-          Ajouter une nouvelle entreprise
-        </span>
+        <span className="text-custom-black">Informations du client</span>
       </div>
       <h2 className="text-2xl font-semibold mb-4 text-center">
-        Ajouter une nouvelle entreprise
+        Informations du client
       </h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 w-full">
-        {/* Numéro de SIRET */}
-        <div className="mb-4">
-          <label
-            htmlFor="siret"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Numéro de SIRET
-          </label>
+        {/* ID (facultatif, à ajouter manuellement ou généré par l'API) */}
+        <div className="mb-4 hidden">
+          <label htmlFor="id">ID</label>
           <input
             type="text"
-            id="siret"
-            name="siret"
-            value={formData.siret}
+            id="id"
+            name="id"
+            value={formData.id}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+          />
+        </div>
+
+        {/* Nom du client */}
+        <div className="mb-4">
+          <label htmlFor="nom_du_client">Nom du client</label>
+          <input
+            type="text"
+            id="nom_du_client"
+            name="nom_du_client"
+            value={formData.nom_du_client}
+            onChange={handleChange}
+            className="input"
             required
           />
         </div>
 
-        {/* Adresse */}
+        {/* Prénom du client */}
         <div className="mb-4">
-          <label
-            htmlFor="address"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Adresse
-          </label>
+          <label htmlFor="prenom_du_client">Prénom du client</label>
           <input
             type="text"
-            name="address"
-            value={formData.address}
+            id="prenom_du_client"
+            name="prenom_du_client"
+            value={formData.prenom_du_client}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
             required
           />
         </div>
 
-        {/* Nom légal */}
+        {/* Numéro de téléphone */}
         <div className="mb-4">
-          <label
-            htmlFor="legalName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Nom légal
-          </label>
+          <label htmlFor="telephone">Numéro de téléphone</label>
           <input
             type="text"
-            id="legalName"
-            name="legalName"
-            value={formData.legalName}
+            id="telephone"
+            name="telephone"
+            value={formData.telephone}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            required
+          />
+        </div>
+
+        {/* Nom de l'entreprise */}
+        <div className="mb-4">
+          <label htmlFor="entreprise">Nom de l'entreprise</label>
+          {/* <input
+            type="text"
+            id="entreprise"
+            name="entreprise"
+            value={formData.entreprise}
+            onChange={handleChange}
+            className="input"
+            required
+          /> */}
+          <Combobox
+            placeholder="Selectionnez une entreprise:"
+            data={Companies}
+            elementToDisplay="nom_du_projet"
+          />
+        </div>
+
+        {/* Dernière modification */}
+        <div className="mb-4">
+          <label htmlFor="derniere_modification">Dernière modification</label>
+          <input
+            type="date"
+            id="derniere_modification"
+            name="derniere_modification"
+            value={formData.derniere_modification}
+            onChange={handleChange}
+            className="input"
             required
           />
         </div>
 
         {/* Hubspot ID */}
         <div className="mb-4">
-          <label
-            htmlFor="hubspotId"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Hubspot ID
-          </label>
+          <label htmlFor="hubspot_id">Hubspot ID</label>
           <input
             type="text"
-            id="hubspotId"
-            name="hubspotId"
-            value={formData.hubspotId}
+            id="hubspot_id"
+            name="hubspot_id"
+            value={formData.hubspot_id}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
-
-        {/* Numéro de tél */}
-        <div className="mb-4">
-          <label
-            htmlFor="phoneNumber"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Numéro de tél
-          </label>
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
-
-        {/* Secteur de l'entreprise */}
-        <div className="mb-4">
-          <label
-            htmlFor="sector"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Secteur de l'entreprise
-          </label>
-          <input
-            type="text"
-            id="sector"
-            name="sector"
-            value={formData.sector}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
-
-        {/* Nom commercial */}
-        <div className="mb-4">
-          <label
-            htmlFor="tradeName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Nom commercial
-          </label>
-          <input
-            type="text"
-            id="tradeName"
-            name="tradeName"
-            value={formData.tradeName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
-
-        {/* Logo de l'entreprise */}
-        <div className="mb-4">
-          <label
-            htmlFor="logo"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Logo de l'entreprise
-          </label>
-          <input
-            type="file"
-            id="logo"
-            name="logo"
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
             required
           />
         </div>
@@ -204,7 +164,7 @@ export default function ClientEdit() {
           type="submit"
           className="w-full py-3 col-span-2 px-4 bg-custom-primary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
-          Modifier les informations
+          Ajouter le client
         </button>
       </form>
     </div>

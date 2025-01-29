@@ -29,3 +29,36 @@
     --color-custom-very-light-grey : #F4F4F4;
     --color-custom-white : #FCFCFC;
   }
+
+
+  @layer components {
+  .input {
+    @apply mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500
+  }
+
+  label {
+    @apply block font-medium text-gray-700
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-custom-primary-low-opacity);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-custom-secondary);
+    color: var(--color-custom-white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-custom-secondary-low-opacity);
+  }
+
+  body {
+    @apply text-custom-black
+  }
+}

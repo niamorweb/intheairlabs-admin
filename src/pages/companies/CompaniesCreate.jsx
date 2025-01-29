@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
 
-export default function CompanyCreation() {
+export default function CompaniesCreate() {
   const [formData, setFormData] = useState({
     siret: "",
     address: "",
@@ -54,7 +54,6 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="siret"
-            className="block text-sm font-medium text-gray-700"
           >
             Numéro de SIRET
           </label>
@@ -64,7 +63,8 @@ export default function CompanyCreation() {
             name="siret"
             value={formData.siret}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez le numéro de SIRET"
             required
           />
         </div>
@@ -73,7 +73,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="address"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Adresse
           </label>
@@ -82,7 +82,8 @@ export default function CompanyCreation() {
             name="address"
             value={formData.address}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez l'adresse de l'entreprise"
             required
           />
         </div>
@@ -91,7 +92,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="legalName"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Nom légal
           </label>
@@ -101,7 +102,8 @@ export default function CompanyCreation() {
             name="legalName"
             value={formData.legalName}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez le nom légal de l'entreprise"
             required
           />
         </div>
@@ -110,7 +112,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="hubspotId"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Hubspot ID
           </label>
@@ -120,7 +122,8 @@ export default function CompanyCreation() {
             name="hubspotId"
             value={formData.hubspotId}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez le Hubspot ID"
             required
           />
         </div>
@@ -129,7 +132,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="phoneNumber"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Numéro de tél
           </label>
@@ -139,7 +142,8 @@ export default function CompanyCreation() {
             name="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez le numéro de téléphone"
             required
           />
         </div>
@@ -148,7 +152,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="sector"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Secteur de l'entreprise
           </label>
@@ -158,7 +162,8 @@ export default function CompanyCreation() {
             name="sector"
             value={formData.sector}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez le secteur de l'entreprise"
             required
           />
         </div>
@@ -167,7 +172,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="tradeName"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Nom commercial
           </label>
@@ -177,7 +182,8 @@ export default function CompanyCreation() {
             name="tradeName"
             value={formData.tradeName}
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
+            placeholder="Entrez le nom commercial de l'entreprise"
             required
           />
         </div>
@@ -186,7 +192,7 @@ export default function CompanyCreation() {
         <div className="mb-4">
           <label
             htmlFor="logo"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Logo de l'entreprise
           </label>
@@ -195,7 +201,7 @@ export default function CompanyCreation() {
             id="logo"
             name="logo"
             onChange={handleChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input"
             required
           />
         </div>
@@ -204,7 +210,7 @@ export default function CompanyCreation() {
           type="submit"
           className="w-full py-3 col-span-2 px-4 bg-custom-primary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
-          Modifier les informations
+          Créer l'entreprise
         </button>
       </form>
     </div>

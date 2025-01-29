@@ -1,21 +1,16 @@
-import {
-  Plus,
-  ChevronRight,
-  ChevronLeft,
-  Search,
-} from "lucide-react";
+import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Companies from "../../data/companies";
 import { useNavigate } from "react-router-dom";
 
-export function CompaniesList() {
+export function ProjectsList() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
   const [currentPage, setCurrentPage] = useState(1); // Page actuelle
   const itemsPerPage = 20; // Nombre d'éléments par page
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Fonction pour gérer la recherche
   const handleSearch = (e) => {
@@ -82,7 +77,7 @@ export function CompaniesList() {
   return (
     <div className="w-full flex flex-col gap-10">
       <div className="flex items-center justify-between w-full">
-        <h1 className="text-4xl font-medium">Listes des entreprises</h1>
+        <h1 className="text-4xl font-medium">Listes des projets</h1>
         <div className="flex items-center gap-3">
           <div className="relative">
             <input
@@ -96,14 +91,17 @@ export function CompaniesList() {
           </div>
           <button className="py-2 px-3 flex items-center gap-3 rounded-full bg-custom-primary text-white">
             <Plus className="size-5" />
-            Ajouter une entreprise
+            Ajouter un projet
           </button>
         </div>
       </div>
       <table className="min-w-full table-auto border-collapse border border-gray-200">
         <thead className="bg-custom-light-grey">
           <tr>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex items-center justify-center">
                 <input
                   type="checkbox"
@@ -145,10 +143,13 @@ export function CompaniesList() {
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
             >
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td
+                onClick={(e) => e.stopPropagation()}
+                className="px-4 py-3 border-b border-gray-200 cursor-default"
+              >
                 <div className="flex items-center justify-center">
                   <input
-                    className="size-4"
+                    className="size-4 cursor-pointer"
                     type="checkbox"
                     checked={selectedRows.includes(i)}
                     onChange={(e) => handleRowSelect(e, i)}
