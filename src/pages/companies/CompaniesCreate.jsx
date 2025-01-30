@@ -45,18 +45,14 @@ export default function CompaniesCreate() {
           Ajouter une nouvelle entreprise
         </span>
       </div>
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+      <h2 className="text-2xl font-semibold  text-center">
         Ajouter une nouvelle entreprise
       </h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 w-full">
         {/* Numéro de SIRET */}
-        <div className="mb-4">
-          <label
-            htmlFor="siret"
-          >
-            Numéro de SIRET
-          </label>
+        <div className="">
+          <label htmlFor="siret">Numéro de SIRET</label>
           <input
             type="text"
             id="siret"
@@ -70,13 +66,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Adresse */}
-        <div className="mb-4">
-          <label
-            htmlFor="address"
-           
-          >
-            Adresse
-          </label>
+        <div className="">
+          <label htmlFor="address">Adresse</label>
           <input
             type="text"
             name="address"
@@ -89,13 +80,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Nom légal */}
-        <div className="mb-4">
-          <label
-            htmlFor="legalName"
-           
-          >
-            Nom légal
-          </label>
+        <div className="">
+          <label htmlFor="legalName">Nom légal</label>
           <input
             type="text"
             id="legalName"
@@ -109,13 +95,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Hubspot ID */}
-        <div className="mb-4">
-          <label
-            htmlFor="hubspotId"
-           
-          >
-            Hubspot ID
-          </label>
+        <div className="">
+          <label htmlFor="hubspotId">Hubspot ID</label>
           <input
             type="text"
             id="hubspotId"
@@ -129,13 +110,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Numéro de tél */}
-        <div className="mb-4">
-          <label
-            htmlFor="phoneNumber"
-           
-          >
-            Numéro de tél
-          </label>
+        <div className="">
+          <label htmlFor="phoneNumber">Numéro de tél</label>
           <input
             type="text"
             id="phoneNumber"
@@ -149,13 +125,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Secteur de l'entreprise */}
-        <div className="mb-4">
-          <label
-            htmlFor="sector"
-           
-          >
-            Secteur de l'entreprise
-          </label>
+        <div className="">
+          <label htmlFor="sector">Secteur de l'entreprise</label>
           <input
             type="text"
             id="sector"
@@ -169,13 +140,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Nom commercial */}
-        <div className="mb-4">
-          <label
-            htmlFor="tradeName"
-           
-          >
-            Nom commercial
-          </label>
+        <div className="">
+          <label htmlFor="tradeName">Nom commercial</label>
           <input
             type="text"
             id="tradeName"
@@ -189,13 +155,8 @@ export default function CompaniesCreate() {
         </div>
 
         {/* Logo de l'entreprise */}
-        <div className="mb-4">
-          <label
-            htmlFor="logo"
-           
-          >
-            Logo de l'entreprise
-          </label>
+        <div className="">
+          <label htmlFor="logo">Logo de l'entreprise</label>
           <input
             type="file"
             id="logo"
@@ -205,10 +166,10 @@ export default function CompaniesCreate() {
             required
           />
         </div>
-
+        <div></div>
         <button
           type="submit"
-          className="w-full py-3 col-span-2 px-4 bg-custom-primary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="w-full cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
           Créer l'entreprise
         </button>

@@ -35,13 +35,13 @@ export default function ClientCreate() {
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Ajouter un nouveau client</span>
       </div>
-      <h2 className="text-2xl font-semibold mb-4 text-center">
+      <h2 className="text-2xl font-semibold  text-center">
         Ajouter un nouveau client
       </h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 w-full">
         {/* ID (facultatif, à ajouter manuellement ou généré par l'API) */}
-        <div className="mb-4 hidden">
+        <div className=" hidden">
           <label htmlFor="id">ID</label>
           <input
             type="text"
@@ -54,7 +54,7 @@ export default function ClientCreate() {
         </div>
 
         {/* Nom du client */}
-        <div className="mb-4">
+        <div className="">
           <label htmlFor="nom_du_client">Nom du client</label>
           <input
             type="text"
@@ -68,7 +68,7 @@ export default function ClientCreate() {
         </div>
 
         {/* Prénom du client */}
-        <div className="mb-4">
+        <div className="">
           <label htmlFor="prenom_du_client">Prénom du client</label>
           <input
             type="text"
@@ -82,7 +82,7 @@ export default function ClientCreate() {
         </div>
 
         {/* Numéro de téléphone */}
-        <div className="mb-4">
+        <div className="">
           <label htmlFor="telephone">Numéro de téléphone</label>
           <input
             type="text"
@@ -96,7 +96,7 @@ export default function ClientCreate() {
         </div>
 
         {/* Nom de l'entreprise */}
-        <div className="mb-4">
+        <div className="">
           <label htmlFor="entreprise">Nom de l'entreprise</label>
           <input
             type="text"
@@ -110,7 +110,7 @@ export default function ClientCreate() {
         </div>
 
         {/* Dernière modification */}
-        <div className="mb-4">
+        <div className="">
           <label htmlFor="derniere_modification">Dernière modification</label>
           <input
             type="date"
@@ -124,7 +124,7 @@ export default function ClientCreate() {
         </div>
 
         {/* Hubspot ID */}
-        <div className="mb-4">
+        <div className="">
           <label htmlFor="hubspot_id">Hubspot ID</label>
           <input
             type="text"
@@ -136,12 +136,12 @@ export default function ClientCreate() {
             required
           />
         </div>
-
+        <div></div>
         <button
           type="submit"
-          className="w-full py-3 col-span-2 px-4 bg-custom-primary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="w-full cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
-          Ajouter le client
+          Créer l'entreprise
         </button>
       </form>
     </div>

@@ -1,9 +1,13 @@
-const Companies = [
+const Projects = [
   {
     id: 1,
     nom_du_projet: "Lorem Ipsum",
     type_de_projet: "Lorem",
     client: "Lorem C",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise A",
     dernière_modification: "25 Janvier 2025",
     hubspot_id: "11223",
@@ -13,6 +17,8 @@ const Companies = [
     nom_du_projet: "Dolor Sit Amet",
     type_de_projet: "Dolor",
     client: "Client B",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise B",
     dernière_modification: "24 Janvier 2025",
     hubspot_id: "11224",
@@ -22,6 +28,8 @@ const Companies = [
     nom_du_projet: "Consectetur Adipiscing",
     type_de_projet: "Adipiscing",
     client: "Client C",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise C",
     dernière_modification: "23 Janvier 2025",
     hubspot_id: "11225",
@@ -31,6 +39,8 @@ const Companies = [
     nom_du_projet: "Eiusmod Tempor",
     type_de_projet: "Eiusmod",
     client: "Client D",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise D",
     dernière_modification: "22 Janvier 2025",
     hubspot_id: "11226",
@@ -40,6 +50,8 @@ const Companies = [
     nom_du_projet: "Magna Aliqua",
     type_de_projet: "Magna",
     client: "Client E",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise E",
     dernière_modification: "21 Janvier 2025",
     hubspot_id: "11227",
@@ -49,6 +61,8 @@ const Companies = [
     nom_du_projet: "Ut Enim Ad Minim",
     type_de_projet: "Minim",
     client: "Client F",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise F",
     dernière_modification: "20 Janvier 2025",
     hubspot_id: "11228",
@@ -58,6 +72,8 @@ const Companies = [
     nom_du_projet: "Quis Nostrud Exercitation",
     type_de_projet: "Exercitation",
     client: "Client G",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise G",
     dernière_modification: "19 Janvier 2025",
     hubspot_id: "11229",
@@ -67,6 +83,8 @@ const Companies = [
     nom_du_projet: "Ullamco Laboris Nisi",
     type_de_projet: "Laboris",
     client: "Client H",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise H",
     dernière_modification: "18 Janvier 2025",
     hubspot_id: "11230",
@@ -76,6 +94,8 @@ const Companies = [
     nom_du_projet: "Excepteur Sint Occaecat",
     type_de_projet: "Sint",
     client: "Client I",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise I",
     dernière_modification: "17 Janvier 2025",
     hubspot_id: "11231",
@@ -85,6 +105,8 @@ const Companies = [
     nom_du_projet: "Cupidatat Non Proident",
     type_de_projet: "Cupidatat",
     client: "Client J",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise J",
     dernière_modification: "16 Janvier 2025",
     hubspot_id: "11232",
@@ -94,6 +116,8 @@ const Companies = [
     nom_du_projet: "Sunt In Culpa Qui",
     type_de_projet: "Culpa",
     client: "Client K",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise K",
     dernière_modification: "15 Janvier 2025",
     hubspot_id: "11233",
@@ -103,6 +127,8 @@ const Companies = [
     nom_du_projet: "Officia Deserunt Mollit",
     type_de_projet: "Mollit",
     client: "Client L",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise L",
     dernière_modification: "14 Janvier 2025",
     hubspot_id: "11234",
@@ -112,6 +138,8 @@ const Companies = [
     nom_du_projet: "Excepteur Velit Esse",
     type_de_projet: "Esse",
     client: "Client M",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise M",
     dernière_modification: "13 Janvier 2025",
     hubspot_id: "11235",
@@ -121,6 +149,8 @@ const Companies = [
     nom_du_projet: "Culpa Qui Officia",
     type_de_projet: "Qui",
     client: "Client N",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise N",
     dernière_modification: "12 Janvier 2025",
     hubspot_id: "11236",
@@ -130,6 +160,8 @@ const Companies = [
     nom_du_projet: "Adipiscing Elit",
     type_de_projet: "Elit",
     client: "Client O",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise O",
     dernière_modification: "11 Janvier 2025",
     hubspot_id: "11237",
@@ -139,6 +171,8 @@ const Companies = [
     nom_du_projet: "Sunt Amet Esse",
     type_de_projet: "Amet",
     client: "Client P",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise P",
     dernière_modification: "10 Janvier 2025",
     hubspot_id: "11238",
@@ -148,6 +182,8 @@ const Companies = [
     nom_du_projet: "Ut Adipiscing Cursus",
     type_de_projet: "Cursus",
     client: "Client Q",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise Q",
     dernière_modification: "9 Janvier 2025",
     hubspot_id: "11239",
@@ -157,6 +193,8 @@ const Companies = [
     nom_du_projet: "Velit Esse Euismod",
     type_de_projet: "Euismod",
     client: "Client R",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise R",
     dernière_modification: "8 Janvier 2025",
     hubspot_id: "11240",
@@ -166,6 +204,8 @@ const Companies = [
     nom_du_projet: "Proident Voluptate",
     type_de_projet: "Voluptate",
     client: "Client S",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise S",
     dernière_modification: "7 Janvier 2025",
     hubspot_id: "11241",
@@ -175,6 +215,8 @@ const Companies = [
     nom_du_projet: "Non Excepteur Sint",
     type_de_projet: "Sint",
     client: "Client T",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise T",
     dernière_modification: "6 Janvier 2025",
     hubspot_id: "11242",
@@ -184,6 +226,8 @@ const Companies = [
     nom_du_projet: "Amet Ipsum Dolor",
     type_de_projet: "Dolor",
     client: "Client U",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise U",
     dernière_modification: "5 Janvier 2025",
     hubspot_id: "11243",
@@ -193,6 +237,8 @@ const Companies = [
     nom_du_projet: "Eiusmod Tempor Labore",
     type_de_projet: "Labore",
     client: "Client V",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise V",
     dernière_modification: "4 Janvier 2025",
     hubspot_id: "11244",
@@ -202,6 +248,8 @@ const Companies = [
     nom_du_projet: "Adipiscing Consectetur",
     type_de_projet: "Consectetur",
     client: "Client W",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise W",
     dernière_modification: "3 Janvier 2025",
     hubspot_id: "11245",
@@ -211,6 +259,8 @@ const Companies = [
     nom_du_projet: "Quis Dolore Amet",
     type_de_projet: "Dolore",
     client: "Client X",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise X",
     dernière_modification: "2 Janvier 2025",
     hubspot_id: "11246",
@@ -220,6 +270,8 @@ const Companies = [
     nom_du_projet: "Reprehenderit Cillum",
     type_de_projet: "Cillum",
     client: "Client Y",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise Y",
     dernière_modification: "1 Janvier 2025",
     hubspot_id: "11247",
@@ -229,6 +281,8 @@ const Companies = [
     nom_du_projet: "Ullamco Anim Excepteur",
     type_de_projet: "Anim",
     client: "Client Z",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise Z",
     dernière_modification: "31 Décembre 2024",
     hubspot_id: "11248",
@@ -238,6 +292,8 @@ const Companies = [
     nom_du_projet: "Mollit Aliquip Ut",
     type_de_projet: "Aliquip",
     client: "Client AA",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AA",
     dernière_modification: "30 Décembre 2024",
     hubspot_id: "11249",
@@ -247,6 +303,8 @@ const Companies = [
     nom_du_projet: "Consequatur Ex Ea",
     type_de_projet: "Ea",
     client: "Client AB",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AB",
     dernière_modification: "29 Décembre 2024",
     hubspot_id: "11250",
@@ -256,6 +314,8 @@ const Companies = [
     nom_du_projet: "In Do Excepteur",
     type_de_projet: "Excepteur",
     client: "Client AC",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AC",
     dernière_modification: "28 Décembre 2024",
     hubspot_id: "11251",
@@ -265,6 +325,8 @@ const Companies = [
     nom_du_projet: "Duis Irure Excepteur",
     type_de_projet: "Irure",
     client: "Client AD",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AD",
     dernière_modification: "27 Décembre 2024",
     hubspot_id: "11252",
@@ -274,6 +336,8 @@ const Companies = [
     nom_du_projet: "Veniam Reprehenderit",
     type_de_projet: "Veniam",
     client: "Client AE",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AE",
     dernière_modification: "26 Décembre 2024",
     hubspot_id: "11253",
@@ -283,6 +347,8 @@ const Companies = [
     nom_du_projet: "Tempor Cillum Dolore",
     type_de_projet: "Tempor",
     client: "Client AF",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AF",
     dernière_modification: "25 Décembre 2024",
     hubspot_id: "11254",
@@ -292,6 +358,8 @@ const Companies = [
     nom_du_projet: "Labore Non Excepteur",
     type_de_projet: "Labore",
     client: "Client AG",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AG",
     dernière_modification: "24 Décembre 2024",
     hubspot_id: "11255",
@@ -301,6 +369,8 @@ const Companies = [
     nom_du_projet: "Sed Ut Perspiciatis",
     type_de_projet: "Sed",
     client: "Client AH",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AH",
     dernière_modification: "23 Décembre 2024",
     hubspot_id: "11256",
@@ -310,10 +380,12 @@ const Companies = [
     nom_du_projet: "Nostrud Exercitation Ullamco",
     type_de_projet: "Nostrud",
     client: "Client AI",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     entreprise: "Entreprise AI",
     dernière_modification: "22 Décembre 2024",
     hubspot_id: "11257",
   },
 ];
 
-export default Companies;
+export default Projects;

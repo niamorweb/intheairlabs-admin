@@ -1,43 +1,42 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
 
 @theme {
-    --color-gray-900: #202225;
-    --color-gray-800: #2f3136;
-    --color-gray-700: #36393f;
-    --color-gray-600: #4f545c;
-    --color-gray-400: #d4d7dc;
-    --color-gray-300: #e3e5e8;
-    --color-gray-200: #ebedef;
-    --color-gray-100: #f2f3f5;
-    --color-primary: #5865f2;
+  --color-gray-900: #202225;
+  --color-gray-800: #2f3136;
+  --color-gray-700: #36393f;
+  --color-gray-600: #4f545c;
+  --color-gray-400: #d4d7dc;
+  --color-gray-300: #e3e5e8;
+  --color-gray-200: #ebedef;
+  --color-gray-100: #f2f3f5;
+  --color-primary: #5865f2;
 
-    --color-custom-dark: #ff3737;
-    --color-custom-primary: #222E90;
-    --color-custom-primary-low-opacity: #222E9020;
-    --color-custom-primary-very-low-opacity: #222E9010;
+  --color-custom-dark: #ff3737;
+  --color-custom-primary: #222e90;
+  --color-custom-primary-low-opacity: #222e9020;
+  --color-custom-primary-very-low-opacity: #222e9010;
 
-    --color-custom-secondary: #EF4922;
-    --color-custom-secondary-low-opacity: #EF492220;
-    --color-custom-secondary-very-low-opacity: #EF492210;
+  --color-custom-secondary: #ef4922;
+  --color-custom-secondary-low-opacity: #ef492220;
+  --color-custom-secondary-very-low-opacity: #ef492210;
 
-    --color-custom-black : #1C0404;
+  --color-custom-black: #1c0404;
 
-    --color-custom-dark-grey : #555555;
-    --color-custom-grey : #A4A4A4;
-    --color-custom-light-grey : #EBEBEB;
-    --color-custom-very-light-grey : #F4F4F4;
-    --color-custom-white : #FCFCFC;
-  }
+  --color-custom-dark-grey: #555555;
+  --color-custom-grey: #a4a4a4;
+  --color-custom-light-grey: #ebebeb;
+  --color-custom-very-light-grey: #f4f4f4;
+  --color-custom-white: #fcfcfc;
+}
 
-
-  @layer components {
+@layer components {
   .input {
-    @apply mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500
+    @apply mt-1 px-3 py-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-custom-dark-grey;
   }
 
   label {
-    @apply block font-medium text-gray-700
+    @apply block font-medium text-gray-700;
   }
 
   .btn-primary:hover {
@@ -59,6 +58,6 @@
   }
 
   body {
-    @apply text-custom-black
+    @apply text-custom-black;
   }
 }

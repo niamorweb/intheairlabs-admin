@@ -3,14 +3,13 @@ import React, { useState } from "react";
 
 export default function ProjectsCreate() {
   const [formData, setFormData] = useState({
-    siret: "",
-    address: "",
-    legalName: "",
-    hubspotId: "",
-    phoneNumber: "",
-    sector: "",
-    tradeName: "",
-    logo: null, // On stocke un fichier pour le logo
+    projectName: "",
+    hubspotProjectId: "",
+    description: "",
+    companyName: "",
+    projectType: "",
+    clientName: "",
+    kmlFile: null, // On stocke un fichier pour le KML
   });
 
   const handleChange = (e) => {
@@ -37,139 +36,120 @@ export default function ProjectsCreate() {
   return (
     <div className="flex flex-col items-start w-full gap-12">
       <div className="flex items-center gap-2">
-        <a href="/companies" className="text-custom-dark-grey">
-          Entreprises
+        <a href="/projects" className="text-custom-dark-grey">
+          Projets
         </a>
         <ChevronRight className="size-4" />
-        <span className="text-custom-black">
-          Ajouter une nouvelle entreprise
-        </span>
+        <span className="text-custom-black">Ajouter un nouveau projet</span>
       </div>
-      <h2 className="text-2xl font-semibold mb-4 text-center">
-        Ajouter une nouvelle entreprise
+      <h2 className="text-2xl font-semibold  text-center">
+        Ajouter un nouveau projet
       </h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 w-full">
-        {/* Numéro de SIRET */}
-        <div className="mb-4">
-          <label htmlFor="siret">Numéro de SIRET</label>
+        <div className="">
+          <label htmlFor="projectName">Nom du projet</label>
           <input
             type="text"
-            id="siret"
-            name="siret"
-            value={formData.siret}
+            id="projectName"
+            name="projectName"
+            value={formData.projectName}
             onChange={handleChange}
             className="input"
-            placeholder="Entrez le numéro de SIRET"
+            placeholder="Entrez le nom du projet"
             required
           />
         </div>
 
-        {/* Adresse */}
-        <div className="mb-4">
-          <label htmlFor="address">Adresse</label>
+        {/* Hubspot project ID */}
+        <div className="">
+          <label htmlFor="hubspotProjectId">Hubspot project ID</label>
           <input
             type="text"
-            name="address"
-            value={formData.address}
+            name="hubspotProjectId"
+            value={formData.hubspotProjectId}
             onChange={handleChange}
             className="input"
-            placeholder="Entrez l'adresse de l'entreprise"
+            placeholder="Entrez le projectID de Hubspot"
             required
           />
         </div>
 
-        {/* Nom légal */}
-        <div className="mb-4">
-          <label htmlFor="legalName">Nom légal</label>
-          <input
-            type="text"
-            id="legalName"
-            name="legalName"
-            value={formData.legalName}
+        {/* Description */}
+        <div className=" col-span-2">
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
             onChange={handleChange}
             className="input"
-            placeholder="Entrez le nom légal de l'entreprise"
+            placeholder="Entrez la description"
             required
           />
         </div>
 
-        {/* Hubspot ID */}
-        <div className="mb-4">
-          <label htmlFor="hubspotId">Hubspot ID</label>
+        {/* Company Name */}
+        <div className="">
+          <label htmlFor="companyName">Entreprise</label>
           <input
             type="text"
-            id="hubspotId"
-            name="hubspotId"
-            value={formData.hubspotId}
+            id="companyName"
+            name="companyName"
+            value={formData.companyName}
             onChange={handleChange}
             className="input"
-            placeholder="Entrez le Hubspot ID"
+            placeholder="Sélectionnez l'entreprise"
             required
           />
         </div>
 
-        {/* Numéro de tél */}
-        <div className="mb-4">
-          <label htmlFor="phoneNumber">Numéro de tél</label>
+        {/* Project Type */}
+        <div className="">
+          <label htmlFor="projectType">Type de projet</label>
           <input
             type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
+            id="projectType"
+            name="projectType"
+            value={formData.projectType}
             onChange={handleChange}
             className="input"
-            placeholder="Entrez le numéro de téléphone"
+            placeholder="Sélectionnez le type de projet"
             required
           />
         </div>
 
-        {/* Secteur de l'entreprise */}
-        <div className="mb-4">
-          <label htmlFor="sector">Secteur de l'entreprise</label>
+        {/* Client Name */}
+        <div className="">
+          <label htmlFor="clientName">Client</label>
           <input
             type="text"
-            id="sector"
-            name="sector"
-            value={formData.sector}
+            id="clientName"
+            name="clientName"
+            value={formData.clientName}
             onChange={handleChange}
             className="input"
-            placeholder="Entrez le secteur de l'entreprise"
+            placeholder="Sélectionnez le client"
             required
           />
         </div>
 
-        {/* Nom commercial */}
-        <div className="mb-4">
-          <label htmlFor="tradeName">Nom commercial</label>
-          <input
-            type="text"
-            id="tradeName"
-            name="tradeName"
-            value={formData.tradeName}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le nom commercial de l'entreprise"
-            required
-          />
-        </div>
-
-        {/* Logo de l'entreprise */}
-        <div className="mb-4">
-          <label htmlFor="logo">Logo de l'entreprise</label>
+        {/* KML File */}
+        <div className="">
+          <label htmlFor="kmlFile">Fichier KML</label>
           <input
             type="file"
-            id="logo"
-            name="logo"
+            id="kmlFile"
+            name="kmlFile"
             onChange={handleChange}
             className="input"
             required
           />
         </div>
-
+        <div></div>
         <button
           type="submit"
-          className="w-full py-3 col-span-2 px-4 bg-custom-primary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="w-full cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         >
           Créer l'entreprise
         </button>

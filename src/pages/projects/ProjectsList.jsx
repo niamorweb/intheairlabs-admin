@@ -1,6 +1,6 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
-import Companies from "../../data/companies";
+import Projects from "../../data/projects";
 import { useNavigate } from "react-router-dom";
 
 export function ProjectsList() {
@@ -19,31 +19,31 @@ export function ProjectsList() {
   };
 
   // Fonction pour filtrer les données en fonction du terme de recherche
-  const filteredCompanies = Companies.filter((company) => {
+  const filteredProjects = Projects.filter((project) => {
     return (
-      company.nom_du_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.type_de_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.entreprise.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.dernière_modification
+      project.nom_du_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.type_de_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.entreprise.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.dernière_modification
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
-      company.hubspot_id.toString().includes(searchTerm) || // Convertir hubspot_id en string pour faire la comparaison
-      company.id.toString().includes(searchTerm) // Convertir id en string pour faire la comparaison
+      project.hubspot_id.toString().includes(searchTerm) || // Convertir hubspot_id en string pour faire la comparaison
+      project.id.toString().includes(searchTerm) // Convertir id en string pour faire la comparaison
     );
   });
 
   // Calculer les éléments à afficher pour la page actuelle
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredCompanies.slice(
+  const currentItems = filteredProjects.slice(
     indexOfFirstItem,
     indexOfLastItem
   );
 
   // Fonction pour passer à la page suivante
   const handleNextPage = () => {
-    if (currentPage * itemsPerPage < filteredCompanies.length) {
+    if (currentPage * itemsPerPage < filteredProjects.length) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -89,10 +89,13 @@ export function ProjectsList() {
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <button className="py-2 px-3 flex items-center gap-3 rounded-full bg-custom-primary text-white">
+          <a
+            href="/projects/create"
+            className="py-2 px-3 flex items-center gap-3 rounded-full bg-custom-primary text-white"
+          >
             <Plus className="size-5" />
             Ajouter un projet
-          </button>
+          </a>
         </div>
       </div>
       <table className="min-w-full table-auto border-collapse border border-gray-200">
@@ -138,7 +141,7 @@ export function ProjectsList() {
           {currentItems.map((x, i) => (
             <tr
               onClick={() =>
-                navigate(`/companies/${x.id}/edit`, { state: { company: x } })
+                navigate(`/projects/${x.id}/edit`, { state: { project: x } })
               }
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
@@ -192,12 +195,12 @@ export function ProjectsList() {
         </button>
         <button
           className={`py-2 px-3 flex items-center gap-2 rounded-full ${
-            currentPage * itemsPerPage >= filteredCompanies.length
+            currentPage * itemsPerPage >= filteredProjects.length
               ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
               : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif
           }`}
           onClick={handleNextPage}
-          disabled={currentPage * itemsPerPage >= filteredCompanies.length}
+          disabled={currentPage * itemsPerPage >= filteredProjects.length}
         >
           Suivant
           <ChevronRight className="size-5" />
