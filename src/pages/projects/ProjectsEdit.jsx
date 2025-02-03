@@ -183,15 +183,17 @@ export default function ProjectsEdit() {
         <h2 className="text-2xl font-semibold">Livrables</h2>
 
         <div className="flex flex-col gap-10">
-          <div className="w-full">
-            <label htmlFor="kmlFile">Fichier KML</label>
-            <button
-              type="submit"
-              className="w-full cursor-pointer flex items-center gap-3 justify-center py-3 col-span-2 px-4 bg-custom-secondary-very-low-opacity hover:bg-custom-secondary-low-opacity duration-150 text-custom-secondary rounded-md focus:outline-none focus:ring-1 focus:ring-custom-secondary focus:ring-opacity-50"
-            >
-              <Upload />
-              Choisir les fichiers
-            </button>
+          <div className="w-full flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="kmlFile">Fichier KML</label>
+              <button
+                type="submit"
+                className="w-full cursor-pointer flex items-center gap-3 justify-center py-4 col-span-2 px-4 bg-custom-secondary-very-low-opacity hover:bg-custom-secondary-low-opacity duration-150 text-custom-secondary rounded-md focus:outline-none focus:ring-1 focus:ring-custom-secondary focus:ring-opacity-50"
+              >
+                <Upload />
+                Choisir les fichiers
+              </button>
+            </div>
             {/* <input
               type="file"
               id="kmlFile"
@@ -205,15 +207,15 @@ export default function ProjectsEdit() {
           <div className="flex flex-col gap-4">
             {[0, 1, 2].map(() => (
               <div className="flex items-center gap-3">
-                <div className="grid grid-cols-2 items-center p-4 rounded-md flex-1 border border-custom-light-grey">
+                <div className="grid grid-cols-2 items-center p-2 rounded-md flex-1 border border-custom-light-grey">
                   <div className="pr-8 w-full">
                     <input
-                      className="p-2 w-full focus:outline-custom-light-grey rounded-md "
+                      className="p-3 w-full focus:outline-custom-light-grey rounded-md "
                       type="text"
                       defaultValue="filename.pdf"
                     />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-sm">
                     <span>Type de fichier</span>
                     <select
                       className="bg-custom-very-light-grey p-2 cursor-pointer rounded-md"

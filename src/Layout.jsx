@@ -116,7 +116,7 @@ function Layout({ children }) {
         </button> */}
       </div>
       <div className="w-full flex flex-col">
-        <div className="py-2 w-full flex items-center justify-between px-10 border-b border-b-custom-light-grey">
+        <div className="hidden py-2 w-full flex items-center justify-between px-10 border-b border-b-custom-light-grey">
           <div className="flex items-center gap-3">
             <a
               href=""

@@ -82,66 +82,65 @@ export function ClientsList() {
             <input
               type="search"
               placeholder="Rechercher.."
-              className="py-2 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity"
+              className="py-2 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
               value={searchTerm}
               onChange={handleSearch} // Mise à jour de l'état de recherche
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <button className="py-2 px-3 flex items-center gap-3 rounded-full bg-custom-primary text-white">
+          <button className="btn-secondary">
             <Plus className="size-5" />
             Ajouter un client
           </button>
         </div>
       </div>
-      <table class="min-w-full table-auto border-collapse border border-gray-200">
-        <thead className="bg-custom-light-grey">
-          <tr>
-            <th>
-              <div className="flex items-center justify-center">
-                <input
-                  type="checkbox"
-                  className="size-4"
-                  checked={selectAll}
-                  onChange={handleSelectAll}
-                />
-              </div>
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              ID
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Nom du client
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Prénom du client
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Numéro de tél
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Entreprise
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Dernière modification
-            </th>
-            <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Hubspot ID
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((x, i) => (
-            <tr
-              onClick={() =>
-                navigate(`/clients/${x.id}/edit`, { state: { client: x } })
-              }
-              key={i}
-              class=" hover:bg-gray-50 cursor-pointer duration-150"
-            >
-              <td>
-                {" "}
-                <td className="px-4 py-3 border-b border-gray-200">
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border-collapse border border-gray-200">
+          <thead className="bg-custom-light-grey">
+            <tr>
+              <th>
+                <div className="flex items-center justify-center">
+                  <input
+                    type="checkbox"
+                    className="size-4"
+                    checked={selectAll}
+                    onChange={handleSelectAll}
+                  />
+                </div>
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                ID
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                Nom du client
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                Prénom du client
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                Numéro de tél
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                Entreprise
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                Dernière modification
+              </th>
+              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+                Hubspot ID
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.map((x, i) => (
+              <tr
+                onClick={() =>
+                  navigate(`/clients/${x.id}/edit`, { state: { client: x } })
+                }
+                key={i}
+                class=" hover:bg-gray-50 cursor-pointer duration-150"
+              >
+                <td className="px-4 py-4 border-b border-gray-200">
                   <div className="flex items-center justify-center">
                     <input
                       className="size-4"
@@ -151,27 +150,33 @@ export function ClientsList() {
                     />
                   </div>
                 </td>
-              </td>
-              <td class="px-4 py-3 border-b border-gray-200">{x.id}</td>
-              <td class="px-4 py-3 border-b border-gray-200">
-                {x.nom_du_client}
-              </td>
-              <td class="px-4 py-3 border-b border-gray-200">
-                {x.prenom_du_client}
-              </td>
-              <td class="px-4 py-3 border-b border-gray-200">{x.telephone}</td>
-              <td class="px-4 py-3 border-b border-gray-200">{x.entreprise}</td>
-              <td class="px-4 py-3 border-b border-gray-200">
-                {x.derniere_modification}
-              </td>
-              <td class="px-4 py-3 border-b border-gray-200">{x.hubspot_id}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                <td class="px-4 py-4 border-b border-gray-200">{x.id}</td>
+                <td class="px-4 py-4 border-b border-gray-200">
+                  {x.nom_du_client}
+                </td>
+                <td class="px-4 py-4 border-b border-gray-200">
+                  {x.prenom_du_client}
+                </td>
+                <td class="px-4 py-4 border-b border-gray-200">
+                  {x.telephone}
+                </td>
+                <td class="px-4 py-4 border-b border-gray-200">
+                  {x.entreprise}
+                </td>
+                <td class="px-4 py-4 border-b border-gray-200">
+                  {x.derniere_modification}
+                </td>
+                <td class="px-4 py-4 border-b border-gray-200">
+                  {x.hubspot_id}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="w-full flex justify-end gap-3">
         <button
-          className={`py-2 px-3 flex items-center gap-2 rounded-full ${
+          className={`py-3 px-4 flex items-center gap-2 rounded-full ${
             currentPage === 1
               ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
               : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif

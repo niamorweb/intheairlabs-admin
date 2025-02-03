@@ -1,9 +1,4 @@
-import {
-  Plus,
-  ChevronRight,
-  ChevronLeft,
-  Search,
-} from "lucide-react";
+import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Companies from "../../data/companies";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +10,7 @@ export function CompaniesList() {
   const [currentPage, setCurrentPage] = useState(1); // Page actuelle
   const itemsPerPage = 20; // Nombre d'éléments par page
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Fonction pour gérer la recherche
   const handleSearch = (e) => {
@@ -88,13 +83,13 @@ export function CompaniesList() {
             <input
               type="search"
               placeholder="Rechercher.."
-              className="py-2 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity"
+              className="py-2 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
               value={searchTerm}
               onChange={handleSearch} // Mise à jour de l'état de recherche
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <button className="py-2 px-3 flex items-center gap-3 rounded-full bg-custom-primary text-white">
+          <button className="btn-secondary">
             <Plus className="size-5" />
             Ajouter une entreprise
           </button>
@@ -145,7 +140,7 @@ export function CompaniesList() {
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
             >
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td className="px-4 py-4 border-b border-gray-200">
                 <div className="flex items-center justify-center">
                   <input
                     className="size-4"
@@ -155,21 +150,21 @@ export function CompaniesList() {
                   />
                 </div>
               </td>
-              <td className="px-4 py-3 border-b border-gray-200">{x.id}</td>
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
+              <td className="px-4 py-4 border-b border-gray-200">
                 {x.nom_du_projet}
               </td>
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td className="px-4 py-4 border-b border-gray-200">
                 {x.type_de_projet}
               </td>
-              <td className="px-4 py-3 border-b border-gray-200">{x.client}</td>
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td className="px-4 py-4 border-b border-gray-200">{x.client}</td>
+              <td className="px-4 py-4 border-b border-gray-200">
                 {x.entreprise}
               </td>
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td className="px-4 py-4 border-b border-gray-200">
                 {x.dernière_modification}
               </td>
-              <td className="px-4 py-3 border-b border-gray-200">
+              <td className="px-4 py-4 border-b border-gray-200">
                 {x.hubspot_id}
               </td>
             </tr>
@@ -190,7 +185,7 @@ export function CompaniesList() {
           Précedent
         </button>
         <button
-          className={`py-2 px-3 flex items-center gap-2 rounded-full ${
+          className={`py-3 px-4 flex items-center gap-2 rounded-full ${
             currentPage * itemsPerPage >= filteredCompanies.length
               ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
               : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif
