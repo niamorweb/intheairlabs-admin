@@ -58,7 +58,6 @@ export default function CompaniesCreate() {
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
-          {/* Numéro de SIRET */}
           <div className="">
             <label htmlFor="siret">Numéro de SIRET</label>
             <input
@@ -73,7 +72,6 @@ export default function CompaniesCreate() {
             />
           </div>
 
-          {/* Adresse */}
           <div className="">
             <label htmlFor="address">Adresse</label>
             <input
@@ -102,7 +100,6 @@ export default function CompaniesCreate() {
               />
             </div>
 
-            {/* Nom commercial */}
             <div className="">
               <label htmlFor="tradeName">Nom commercial</label>
               <input
@@ -118,7 +115,6 @@ export default function CompaniesCreate() {
             </div>
           </div>
 
-          {/* Hubspot ID */}
           <div className="">
             <label htmlFor="hubspotId">Hubspot ID</label>
             <input
@@ -133,7 +129,6 @@ export default function CompaniesCreate() {
             />
           </div>
 
-          {/* Numéro de tél */}
           <div className="">
             <label htmlFor="phoneNumber">Numéro de tél</label>
             <input
@@ -148,7 +143,6 @@ export default function CompaniesCreate() {
             />
           </div>
 
-          {/* Secteur de l'entreprise */}
           <div className="">
             <label htmlFor="sector">Secteur de l'entreprise</label>
             <input
@@ -163,7 +157,6 @@ export default function CompaniesCreate() {
             />
           </div>
 
-          {/* Logo de l'entreprise */}
           <div className="">
             <label htmlFor="logo">Logo de l'entreprise</label>
             <input

@@ -50,7 +50,7 @@ export default function CompaniesEdit() {
   };
 
   return (
-    <div className="flex flex-col items-start w-full gap-12">
+    <div className="flex flex-col items-start w-full gap-12 max-w-[700px]">
       <div className="flex items-center gap-2">
         <a href="/companies" className="text-custom-dark-grey">
           Entreprises
@@ -58,135 +58,137 @@ export default function CompaniesEdit() {
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Informations sur l'entreprise</span>
       </div>
-      <h2 className="text-2xl font-semibold text-center">
-        Informations sur l'entreprise
-      </h2>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 w-full">
-        {/* Numéro de SIRET */}
-        <div className="mb-4">
-          <label htmlFor="siret">Numéro de SIRET</label>
-          <input
-            type="text"
-            id="siret"
-            name="siret"
-            value={formData.siret}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le numéro de SIRET"
-            required
-          />
+      <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl font-semibold">
+            Informations sur l'entreprise
+          </h2>
+          <p className=" text-custom-dark-grey">
+            Champs obligatoires{" "}
+            <span className="text-custom-secondary text-sm">*</span>
+          </p>
         </div>
 
-        {/* Adresse */}
-        <div className="mb-4">
-          <label htmlFor="address">Adresse</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez l'adresse de l'entreprise"
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
+          <div className="">
+            <label htmlFor="siret">Numéro de SIRET</label>
+            <input
+              type="text"
+              id="siret"
+              name="siret"
+              value={formData.siret}
+              onChange={handleChange}
+              className="input"
+              placeholder="Entrez le numéro de SIRET"
+              required
+            />
+          </div>
 
-        {/* Nom légal */}
-        <div className="mb-4">
-          <label htmlFor="legalName">Nom légal</label>
-          <input
-            type="text"
-            id="legalName"
-            name="legalName"
-            value={formData.legalName}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le nom légal de l'entreprise"
-            required
-          />
-        </div>
+          <div className="">
+            <label htmlFor="address">Adresse</label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className="input"
+              placeholder="Entrez l'adresse de l'entreprise"
+              required
+            />
+          </div>
 
-        {/* Hubspot ID */}
-        <div className="mb-4">
-          <label htmlFor="hubspotId">Hubspot ID</label>
-          <input
-            type="text"
-            id="hubspotId"
-            name="hubspotId"
-            value={formData.hubspotId}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le Hubspot ID"
-            required
-          />
-        </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="">
+              <label htmlFor="legalName">Nom légal</label>
+              <input
+                type="text"
+                id="legalName"
+                name="legalName"
+                value={formData.legalName}
+                onChange={handleChange}
+                className="input"
+                placeholder="Entrez le nom légal de l'entreprise"
+                required
+              />
+            </div>
 
-        {/* Numéro de tél */}
-        <div className="mb-4">
-          <label htmlFor="phoneNumber">Numéro de tél</label>
-          <input
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le numéro de téléphone"
-            required
-          />
-        </div>
+            <div className="">
+              <label htmlFor="tradeName">Nom commercial</label>
+              <input
+                type="text"
+                id="tradeName"
+                name="tradeName"
+                value={formData.tradeName}
+                onChange={handleChange}
+                className="input"
+                placeholder="Entrez le nom commercial de l'entreprise"
+                required
+              />
+            </div>
+          </div>
 
-        {/* Secteur de l'entreprise */}
-        <div className="mb-4">
-          <label htmlFor="sector">Secteur de l'entreprise</label>
-          <input
-            type="text"
-            id="sector"
-            name="sector"
-            value={formData.sector}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le secteur de l'entreprise"
-            required
-          />
-        </div>
+          <div className="">
+            <label htmlFor="hubspotId">Hubspot ID</label>
+            <input
+              type="text"
+              id="hubspotId"
+              name="hubspotId"
+              value={formData.hubspotId}
+              onChange={handleChange}
+              className="input"
+              placeholder="Entrez le Hubspot ID"
+              required
+            />
+          </div>
 
-        {/* Nom commercial */}
-        <div className="mb-4">
-          <label htmlFor="tradeName">Nom commercial</label>
-          <input
-            type="text"
-            id="tradeName"
-            name="tradeName"
-            value={formData.tradeName}
-            onChange={handleChange}
-            className="input"
-            placeholder="Entrez le nom commercial de l'entreprise"
-            required
-          />
-        </div>
+          <div className="">
+            <label htmlFor="phoneNumber">Numéro de tél</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              className="input"
+              placeholder="Entrez le numéro de téléphone"
+              required
+            />
+          </div>
 
-        {/* Logo de l'entreprise */}
-        <div className="mb-4">
-          <label htmlFor="logo">Logo de l'entreprise</label>
-          <input
-            type="file"
-            id="logo"
-            name="logo"
-            onChange={handleChange}
-            className="input"
-            required
-          />
-        </div>
+          <div className="">
+            <label htmlFor="sector">Secteur de l'entreprise</label>
+            <input
+              type="text"
+              id="sector"
+              name="sector"
+              value={formData.sector}
+              onChange={handleChange}
+              className="input"
+              placeholder="Entrez le secteur de l'entreprise"
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="w-full py-3 col-span-2 px-4 bg-custom-primary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-        >
-          Modifier les informations
-        </button>
-      </form>
+          <div className="">
+            <label htmlFor="logo">Logo de l'entreprise</label>
+            <input
+              type="file"
+              id="logo"
+              name="logo"
+              onChange={handleChange}
+              className="input"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-fit self-end cursor-pointer flex items-center gap-2 py-3 px-4 bg-custom-secondary text-white rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            Modifier les informations
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

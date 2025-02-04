@@ -1,0 +1,48 @@
+const Users = [
+  {
+    id: 1,
+    nom: "Dupont",
+    prenom: "Pierre",
+    email: "pierre.dupont@example.com",
+    numero_de_tel: "0123456789",
+    permission: "Super Admin",
+    date_creation: "2025-01-01",
+  },
+  {
+    id: 2,
+    nom: "Lemoine",
+    prenom: "Marie",
+    email: "marie.lemoine@example.com",
+    numero_de_tel: "0987654321",
+    permission: "Admin",
+    date_creation: "2024-12-15",
+  },
+  {
+    id: 3,
+    nom: "Tanguy",
+    prenom: "Paul",
+    email: "paul.tanguy@example.com",
+    numero_de_tel: "0147852369",
+    permission: "Admin",
+    date_creation: "2025-01-20",
+  },
+  {
+    id: 4,
+    nom: "Moreau",
+    prenom: "Sophie",
+    email: "sophie.moreau@example.com",
+    numero_de_tel: "0162837465",
+    permission: "Admin",
+    date_creation: "2024-11-30",
+  },
+  {
+    id: 5,
+    nom: "Bernard",
+    prenom: "Luc",
+    email: "luc.bernard@example.com",
+    numero_de_tel: "0174839201",
+    permission: "Admin",
+    date_creation: "2025-02-01",
+  },
+];
+export default Users;

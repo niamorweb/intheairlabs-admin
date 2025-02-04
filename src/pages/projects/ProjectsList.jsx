@@ -83,7 +83,7 @@ export function ProjectsList() {
             <input
               type="search"
               placeholder="Rechercher.."
-              className="py-2 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
+              className="py-3 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
               value={searchTerm}
               onChange={handleSearch} // Mise à jour de l'état de recherche
             />

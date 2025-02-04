@@ -1,9 +1,9 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
-import Companies from "../../data/companies";
+import Users from "../../data/users"; // Changement de "Projects" à "Users"
 import { useNavigate } from "react-router-dom";
 
-export function CompaniesList() {
+export default function UsersList() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
@@ -19,31 +19,32 @@ export function CompaniesList() {
   };
 
   // Fonction pour filtrer les données en fonction du terme de recherche
-  const filteredCompanies = Companies.filter((company) => {
+  const filteredUsers = Users.filter((user) => {
+    // Changement de "Projects" à "Users"
     return (
-      company.nom_du_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.type_de_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.entreprise.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.dernière_modification
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      company.hubspot_id.toString().includes(searchTerm) || // Convertir hubspot_id en string pour faire la comparaison
-      company.id.toString().includes(searchTerm) // Convertir id en string pour faire la comparaison
+      user.nom.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de nom_du_projet à nom
+      user.prenom.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de prénom
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement d'email
+      user.numero_de_tel.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de numéro_de_tel
+      user.permission.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de permission
+      user.date_creation.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de date_creation
+      user.id.toString().includes(searchTerm) // Conversion de id en string pour comparaison
     );
   });
 
   // Calculer les éléments à afficher pour la page actuelle
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredCompanies.slice(
+  const currentItems = filteredUsers.slice(
+    // Changement de "filteredProjects" à "filteredUsers"
     indexOfFirstItem,
     indexOfLastItem
   );
 
   // Fonction pour passer à la page suivante
   const handleNextPage = () => {
-    if (currentPage * itemsPerPage < filteredCompanies.length) {
+    if (currentPage * itemsPerPage < filteredUsers.length) {
+      // Changement de filteredProjects à filteredUsers
       setCurrentPage(currentPage + 1);
     }
   };
@@ -77,7 +78,7 @@ export function CompaniesList() {
   return (
     <div className="w-full flex flex-col gap-10">
       <div className="flex items-center justify-between w-full">
-        <h1 className="text-4xl font-medium">Listes des entreprises</h1>
+        <h1 className="text-4xl font-medium">Gérer les utilisateurs</h1>
         <div className="flex items-center gap-3">
           <div className="relative">
             <input
@@ -89,16 +90,21 @@ export function CompaniesList() {
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <button className="btn-secondary">
+          <a href="/manage-users/create" className="btn-secondary">
+            {" "}
+            {/* Changement du lien vers la création d'un utilisateur */}
             <Plus className="size-5" />
-            Ajouter une entreprise
-          </button>
+            Ajouter un utilisateur
+          </a>
         </div>
       </div>
       <table className="min-w-full table-auto border-collapse border border-gray-200">
         <thead className="bg-custom-light-grey">
           <tr>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="flex items-center justify-center">
                 <input
                   type="checkbox"
@@ -112,61 +118,72 @@ export function CompaniesList() {
               ID
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Nom du projet
+              Nom
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Type de projet
+              Prénom
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Client
+              Email
+            </th>{" "}
+            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+              Numéro de tél.
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Entreprise
-            </th>
+              Rôle
+            </th>{" "}
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Dernière modification
-            </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Hubspot ID
+              Date de création
             </th>
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((x, i) => (
+          {currentItems.map((user, i) => (
             <tr
-              onClick={() =>
-                navigate(`/companies/${x.id}/edit`, { state: { company: x } })
+              onClick={
+                () => navigate(`/manage-users/create`, { state: { user } }) // Changement de "projects" à "users"
               }
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
             >
-              <td className="px-4 py-4 border-b border-gray-200">
+              <td
+                onClick={(e) => e.stopPropagation()}
+                className="px-4 py-4 border-b border-gray-200 cursor-default"
+              >
                 <div className="flex items-center justify-center">
                   <input
-                    className="size-4"
+                    className="size-4 cursor-pointer"
                     type="checkbox"
                     checked={selectedRows.includes(i)}
                     onChange={(e) => handleRowSelect(e, i)}
                   />
                 </div>
               </td>
-              <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
+              <td className="px-4 py-4 border-b border-gray-200">{user.id}</td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.nom_du_projet}
-              </td>
+                {user.nom}
+              </td>{" "}
+              {/* Changement de "nom_du_projet" à "nom" */}
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.type_de_projet}
-              </td>
-              <td className="px-4 py-4 border-b border-gray-200">{x.client}</td>
+                {user.prenom}
+              </td>{" "}
+              {/* Changement de "prenom" */}
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.entreprise}
-              </td>
+                {user.email}
+              </td>{" "}
+              {/* Changement d'email */}
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.dernière_modification}
-              </td>
+                {user.numero_de_tel}
+              </td>{" "}
+              {/* Changement de numéro_de_tel */}
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.hubspot_id}
-              </td>
+                {user.permission}
+              </td>{" "}
+              {/* Changement de permission */}
+              <td className="px-4 py-4 border-b border-gray-200">
+                {user.date_creation}
+              </td>{" "}
+              {/* Changement de date_creation */}
             </tr>
           ))}
         </tbody>
@@ -186,12 +203,12 @@ export function CompaniesList() {
         </button>
         <button
           className={`py-3 px-4 flex items-center gap-2 rounded-full ${
-            currentPage * itemsPerPage >= filteredCompanies.length
+            currentPage * itemsPerPage >= filteredUsers.length
               ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
               : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif
           }`}
           onClick={handleNextPage}
-          disabled={currentPage * itemsPerPage >= filteredCompanies.length}
+          disabled={currentPage * itemsPerPage >= filteredUsers.length}
         >
           Suivant
           <ChevronRight className="size-5" />

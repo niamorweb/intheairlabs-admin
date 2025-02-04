@@ -164,16 +164,10 @@ export default function ProjectsEdit() {
 
         <div></div>
         <div className="grid-cols-2 grid gap-6 mt-4">
-          <button
-            type="submit"
-            className="w-full cursor-pointer py-3 px-4 bg-custom-very-light-grey text-custom-dark-grey rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
+          <button type="submit" className="btn-cancel">
             Annuler
           </button>
-          <button
-            type="submit"
-            className="w-full cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          >
+          <button type="submit" className=" btn-secondary">
             Sauvegarder les modifications{" "}
           </button>
         </div>
@@ -234,7 +228,7 @@ export default function ProjectsEdit() {
           </div>
         </div>
 
-        <button className="w-1/2 self-end cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+        <button className="self-end btn-secondary">
           Télécharger ces livrables
         </button>
       </div>

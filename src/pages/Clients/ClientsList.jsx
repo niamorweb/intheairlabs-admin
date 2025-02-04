@@ -82,7 +82,7 @@ export function ClientsList() {
             <input
               type="search"
               placeholder="Rechercher.."
-              className="py-2 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
+              className="py-3 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
               value={searchTerm}
               onChange={handleSearch} // Mise à jour de l'état de recherche
             />
@@ -178,8 +178,8 @@ export function ClientsList() {
         <button
           className={`py-3 px-4 flex items-center gap-2 rounded-full ${
             currentPage === 1
-              ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
-              : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif
+              ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed"
+              : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer"
           }`}
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
