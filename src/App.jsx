@@ -1,19 +1,4 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import {
-  Building,
-  LogOut,
-  NotebookText,
-  Plus,
-  User,
-  Users,
-  UserCog,
-  Filter,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
 import { CompaniesList } from "./pages/companies/CompaniesList";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
@@ -31,132 +16,160 @@ import UsersList from "./pages/manage-users/usersList";
 import { UserCreate } from "./pages/manage-users/UserCreate";
 import { MyAccount } from "./pages/my-account/UserCreate";
 import Login from "./pages/login/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <Routes>
-      {/* Page SignIn ne nécessite pas de layout */}
-      {/* <Route path="/signin" element={<SignIn />} /> */}
-      {/* Pages avec layout */}
       <Route path="/login" element={<Login />} />
       <Route
         path="/manage-users"
         element={
-          <Layout>
-            <UsersList />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <UsersList />
+            </Layout>
+          </ProtectedRoute>
         }
       />{" "}
       <Route
         path="/my-account"
         element={
-          <Layout>
-            <MyAccount />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <MyAccount />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/manage-users/create"
         element={
-          <Layout>
-            <UserCreate />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <UserCreate />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/"
         element={
-          <Layout>
-            <CompaniesList />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <CompaniesList />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/companies"
         element={
-          <Layout>
-            <CompaniesList />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <CompaniesList />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/companies/create"
         element={
-          <Layout>
-            <CompaniesCreate />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <CompaniesCreate />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/companies/:id/edit"
         element={
-          <Layout>
-            <CompaniesEdit />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <CompaniesEdit />
+            </Layout>
+          </ProtectedRoute>
         }
       />{" "}
       <Route
         path="/projects/types"
         element={
-          <Layout>
-            <TypesCreate />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <TypesCreate />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/companies/sectors"
         element={
-          <Layout>
-            <SectorsCreate />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <SectorsCreate />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/projects"
         element={
-          <Layout>
-            <ProjectsList />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ProjectsList />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/projects/create"
         element={
-          <Layout>
-            <ProjectsCreate />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ProjectsCreate />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/projects/:id/edit"
         element={
-          <Layout>
-            <ProjectsEdit />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ProjectsEdit />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/clients"
         element={
-          <Layout>
-            <ClientsList />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ClientsList />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/clients/create"
         element={
-          <Layout>
-            <ClientCreate />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ClientCreate />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/clients/:id/edit"
         element={
-          <Layout>
-            <ClientEdit />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ClientEdit />
+            </Layout>
+          </ProtectedRoute>
         }
       />
     </Routes>

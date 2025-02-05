@@ -10,6 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { useAuth } from "./context/AuthContext";
 
 // Définir les éléments de navigation avec l'icône Plus là où c'est nécessaire
 const navItems = [
@@ -74,6 +75,9 @@ const navItems = [
 ];
 
 function Layout({ children }) {
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, logout } =
+    useAuth();
+
   return (
     <div className="flex items-start h-full">
       <div className="bg-custom-primary sticky top-0 p-10 flex flex-col justify-between text-white h-screen">
@@ -119,7 +123,7 @@ function Layout({ children }) {
               className="flex items-center gap-2 text-sm hover:bg-custom-very-light-grey p-3 duration-150 cursor-pointer rounded-md"
             >
               <User className="size-4" />
-              Mon compte
+              Mon compte {isLoggedIn && authUser.email}
             </a>
             <a
               href="/manage-users"
@@ -129,7 +133,10 @@ function Layout({ children }) {
               Gérer les utilisateurs
             </a>
           </div>
-          <button className="text-custom-black flex items-center gap-3 text-sm text-custom-secondary hover:bg-custom-secondary-very-low-opacity p-3 duration-150 cursor-pointer rounded-md">
+          <button
+            onClick={() => logout()}
+            className="text-custom-black flex items-center gap-3 text-sm text-custom-secondary hover:bg-custom-secondary-very-low-opacity p-3 duration-150 cursor-pointer rounded-md"
+          >
             {" "}
             <LogOut className="size-4 text-custom-black text-custom-secondary" />{" "}
             Me déconnecter
