@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useAuth } from "./context/AuthContext";
+import { Link } from "react-router-dom";
 
 // Définir les éléments de navigation avec l'icône Plus là où c'est nécessaire
 const navItems = [
@@ -99,15 +100,16 @@ function Layout({ children }) {
                 <span className="uppercase text-xs">{section.label}</span>
                 <div className="flex flex-col flex-no-wrap">
                   {section.links.map((link, linkIndex) => (
-                    <a
+                    <Link
+                      to={link.href}
                       key={linkIndex}
-                      href={link.href}
+                      // href={link.href}
                       className="flex items-center gap-2 text-sm whitespace-nowrap hover:bg-white/10 p-3 rounded-md duration-150"
                     >
                       {link.icon || section.icon}{" "}
                       {/* Utiliser l'icône spécifique pour chaque lien */}
                       {link.text}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -118,20 +120,20 @@ function Layout({ children }) {
       <div className="w-full flex flex-col">
         <div className="py-2 w-full flex items-center justify-between px-10 border-b border-b-custom-light-grey">
           <div className="flex items-center gap-3">
-            <a
-              href="/my-account"
+            <Link
+              to="/my-account"
               className="flex items-center gap-2 text-sm hover:bg-custom-very-light-grey p-3 duration-150 cursor-pointer rounded-md"
             >
               <User className="size-4" />
               Mon compte {isLoggedIn && authUser.email}
-            </a>
-            <a
-              href="/manage-users"
+            </Link>
+            <Link
+              to="/manage-users"
               className="flex items-center gap-2 text-sm hover:bg-custom-very-light-grey p-3 duration-150 cursor-pointer rounded-md"
             >
               <UserCog className="size-4" />
               Gérer les utilisateurs
-            </a>
+            </Link>
           </div>
           <button
             onClick={() => logout()}

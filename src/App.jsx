@@ -65,21 +65,17 @@ function App() {
       <Route
         path="/companies"
         element={
-          <ProtectedRoute>
-            <Layout>
-              <CompaniesList />
-            </Layout>
-          </ProtectedRoute>
+          <Layout>
+            <CompaniesList />
+          </Layout>
         }
       />
       <Route
         path="/companies/create"
         element={
-          <ProtectedRoute>
-            <Layout>
-              <CompaniesCreate />
-            </Layout>
-          </ProtectedRoute>
+          <Layout>
+            <CompaniesCreate />
+          </Layout>
         }
       />
       <Route

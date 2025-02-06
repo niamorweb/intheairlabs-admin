@@ -7,21 +7,10 @@ const ProtectedRoute = ({ children }) => {
   const { isLoggedIn, authUser } = useAuth();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 100);
+  const storedUser = localStorage.getItem("authUser");
+  const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
 
-    return () => clearTimeout(timer);
-  }, [isLoggedIn, authUser]);
-
-  console.log("isLoggedIn in ProtectedRoute:", isLoggedIn);
-
-  if (loading) {
-    return <Layout>Loading ...</Layout>;
-  }
-
-  if (!isLoggedIn) {
+  if (!storedIsLoggedIn) {
     return <Navigate to="/login" />;
   }
 

@@ -1,7 +1,7 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Users from "../../data/users"; // Changement de "Projects" à "Users"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function UsersList() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -90,12 +90,12 @@ export default function UsersList() {
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <a href="/manage-users/create" className="btn-secondary">
+          <Link to="/manage-users/create" className="btn-secondary">
             {" "}
             {/* Changement du lien vers la création d'un utilisateur */}
             <Plus className="size-5" />
             Ajouter un utilisateur
-          </a>
+          </Link>
         </div>
       </div>
       <table className="min-w-full table-auto border-collapse border border-gray-200">

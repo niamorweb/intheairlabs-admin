@@ -1,5 +1,6 @@
 import { ChevronRight, Plus } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ClientCreate() {
   const [formData, setFormData] = useState({
@@ -28,9 +29,9 @@ export default function ClientCreate() {
   return (
     <div className="flex flex-col items-start w-full gap-8">
       <div className="flex items-center gap-2">
-        <a href="/clients" className="text-custom-dark-grey">
+        <Link to="/clients" className="text-custom-dark-grey">
           Clients
-        </a>
+        </Link>
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Ajouter un nouveau client</span>
       </div>

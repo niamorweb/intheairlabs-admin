@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Users from "../../data/users";
 import { ChevronRight } from "lucide-react";
 
@@ -50,9 +50,9 @@ export function UserCreate() {
   return (
     <div className="flex flex-col items-start w-full gap-12 max-w-[700px]">
       <div className="flex items-center gap-2">
-        <a href="/manage-users" className="text-custom-dark-grey">
+        <Link to="/manage-users" className="text-custom-dark-grey">
           Gérer les utilisateurs
-        </a>
+        </Link>
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Ajouter un utilisateur</span>
       </div>

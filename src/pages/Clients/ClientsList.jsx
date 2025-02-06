@@ -1,7 +1,7 @@
 import { Plus, Filter, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Clients from "../../data/clients";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function ClientsList() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -88,10 +88,10 @@ export function ClientsList() {
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <button className="btn-secondary">
+          <Link to="/clients/create" className="btn-secondary">
             <Plus className="size-5" />
             Ajouter un client
-          </button>
+          </Link>
         </div>
       </div>
       <div class="overflow-x-auto">

@@ -1,7 +1,7 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Projects from "../../data/projects";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function ProjectsList() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -89,10 +89,10 @@ export function ProjectsList() {
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <a href="/projects/create" className="btn-secondary">
+          <Link to="/projects/create" className="btn-secondary">
             <Plus className="size-5" />
             Ajouter un projet
-          </a>
+          </Link>
         </div>
       </div>
       <table className="min-w-full table-auto border-collapse border border-gray-200">

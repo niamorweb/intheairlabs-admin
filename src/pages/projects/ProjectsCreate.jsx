@@ -1,5 +1,6 @@
 import { ChevronRight, Plus } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ProjectsCreate() {
   const [formData, setFormData] = useState({
@@ -37,9 +38,9 @@ export default function ProjectsCreate() {
     <div className="flex flex-col items-start w-full gap-8 max-w-[700px]">
       <div className="flex flex-col gap-6 w-full">
         <div className="flex items-center gap-2">
-          <a href="/projects" className="text-custom-dark-grey">
+          <Link to="/projects" className="text-custom-dark-grey">
             Projets
-          </a>
+          </Link>
           <ChevronRight className="size-4" />
           <span className="text-custom-black">Ajouter un nouveau projet</span>
         </div>

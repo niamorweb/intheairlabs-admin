@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Clients from "../../data/clients";
 import "react-responsive-combo-box/dist/index.css";
 import Companies from "../../data/companies";
@@ -47,9 +47,9 @@ export default function ClientCreate() {
   return (
     <div className="flex flex-col items-start w-full gap-12">
       <div className="flex items-center gap-2">
-        <a href="/clients" className="text-custom-dark-grey">
+        <Link to="/clients" className="text-custom-dark-grey">
           Clients
-        </a>
+        </Link>
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Informations du client</span>
       </div>

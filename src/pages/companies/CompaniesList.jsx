@@ -1,7 +1,7 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Companies from "../../data/companies";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function CompaniesList() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -89,10 +89,10 @@ export function CompaniesList() {
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
-          <button className="btn-secondary">
+          <Link to="/companies/create" className="btn-secondary">
             <Plus className="size-5" />
             Ajouter une entreprise
-          </button>
+          </Link>
         </div>
       </div>
       <table className="min-w-full table-auto border-collapse border border-gray-200">

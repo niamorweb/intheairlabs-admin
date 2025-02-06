@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Companies from "../../data/companies";
 
 export default function CompaniesEdit() {
@@ -52,9 +52,9 @@ export default function CompaniesEdit() {
   return (
     <div className="flex flex-col items-start w-full gap-12 max-w-[700px]">
       <div className="flex items-center gap-2">
-        <a href="/companies" className="text-custom-dark-grey">
+        <Link to="/companies" className="text-custom-dark-grey">
           Entreprises
-        </a>
+        </Link>
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Informations sur l'entreprise</span>
       </div>

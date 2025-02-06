@@ -1,13 +1,14 @@
 import { ChevronRight, Plus } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function TypesCreate() {
   return (
     <div className="flex flex-col items-start w-full max-w-[700px] gap-14">
       <div className="flex items-center gap-2">
-        <a href="/projects" className="text-custom-dark-grey">
+        <Link to="/projects" className="text-custom-dark-grey">
           Projets
-        </a>
+        </Link>
         <ChevronRight className="size-4" />
         <span className="text-custom-black">Ajouter des types</span>
       </div>

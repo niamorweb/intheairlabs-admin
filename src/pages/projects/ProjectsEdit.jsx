@@ -1,6 +1,6 @@
 import { ChevronRight, Upload, X } from "lucide-react";
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Companies from "../../data/companies";
 
 export default function ProjectsEdit() {
@@ -51,9 +51,9 @@ export default function ProjectsEdit() {
   return (
     <div className="flex flex-col items-start w-full gap-6">
       <div className="flex items-center gap-2">
-        <a href="/projects" className="text-custom-dark-grey">
+        <Link to="/projects" className="text-custom-dark-grey">
           Projets
-        </a>
+        </Link>
         <ChevronRight className="size-4" />
         <span className="text-custom-black">
           Informations sur le projet et livrables
