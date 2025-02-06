@@ -60,7 +60,9 @@ export default function CompaniesCreate() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
           <div className="">
-            <label htmlFor="siret">Numéro de SIRET</label>
+            <label htmlFor="siret" className="required_input_label">
+              Numéro de SIRET
+            </label>
             <input
               type="text"
               id="siret"
@@ -88,7 +90,9 @@ export default function CompaniesCreate() {
 
           <div className="grid grid-cols-2 gap-6">
             <div className="">
-              <label htmlFor="legalName">Nom légal</label>
+              <label htmlFor="legalName" className="required_input_label">
+                Nom légal
+              </label>
               <input
                 type="text"
                 id="legalName"
@@ -102,7 +106,9 @@ export default function CompaniesCreate() {
             </div>
 
             <div className="">
-              <label htmlFor="tradeName">Nom commercial</label>
+              <label htmlFor="tradeName" className="required_input_label">
+                Nom commercial
+              </label>
               <input
                 type="text"
                 id="tradeName"
@@ -117,7 +123,9 @@ export default function CompaniesCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="hubspotId">Hubspot ID</label>
+            <label htmlFor="hubspotId" className="required_input_label">
+              Hubspot ID
+            </label>
             <input
               type="text"
               id="hubspotId"
@@ -145,7 +153,9 @@ export default function CompaniesCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="sector">Secteur de l'entreprise</label>
+            <label htmlFor="sector" className="required_input_label">
+              Secteur de l'entreprise
+            </label>
             <input
               type="text"
               id="sector"
@@ -159,7 +169,9 @@ export default function CompaniesCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="logo">Logo de l'entreprise</label>
+            <label htmlFor="logo" className="required_input_label">
+              Logo de l'entreprise
+            </label>
             <input
               type="file"
               id="logo"

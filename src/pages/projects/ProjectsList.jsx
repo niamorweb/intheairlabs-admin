@@ -1,24 +1,28 @@
-import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Projects from "../../data/projects";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export function ProjectsList() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
-  const [currentPage, setCurrentPage] = useState(1); // Page actuelle
-  const itemsPerPage = 20; // Nombre d'éléments par page
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortConfig, setSortConfig] = useState({
+    key: "dernière_modification",
+    direction: "desc",
+  });
 
+  const itemsPerPage = 20;
   const navigate = useNavigate();
 
   // Fonction pour gérer la recherche
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Réinitialiser la page à 1 lors de la recherche
+    setCurrentPage(1);
   };
 
-  // Fonction pour filtrer les données en fonction du terme de recherche
+  // Fonction pour filtrer les données
   const filteredProjects = Projects.filter((project) => {
     return (
       project.nom_du_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -28,50 +32,76 @@ export function ProjectsList() {
       project.dernière_modification
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
-      project.hubspot_id.toString().includes(searchTerm) || // Convertir hubspot_id en string pour faire la comparaison
-      project.id.toString().includes(searchTerm) // Convertir id en string pour faire la comparaison
+      project.hubspot_id.toString().includes(searchTerm) ||
+      project.id.toString().includes(searchTerm)
     );
   });
 
-  // Calculer les éléments à afficher pour la page actuelle
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredProjects.slice(
-    indexOfFirstItem,
-    indexOfLastItem
+  // Fonction pour gérer le tri
+  const handleSort = (key) => {
+    console.log("key key : : ", key);
+
+    let direction = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // Fonction pour trier les projets avec gestion des différents types (string, number, date)
+  const sortItems = (items, key, direction) => {
+    return items.sort((a, b) => {
+      const aValue = a[key];
+      const bValue = b[key];
+
+      console.log("a :::: ", a);
+      console.log("key :::: ", key);
+      console.log("a[key] :::: ", a[key]);
+      console.log("b :::: ", b);
+      console.log("aValue :::: ", aValue);
+      console.log("bValue :::: ", bValue);
+
+      let comparison = 0;
+
+      // Si la valeur est une date (on suppose que la date est sous forme de string)
+      if (Date.parse(aValue) && Date.parse(bValue)) {
+        comparison = new Date(aValue) - new Date(bValue);
+      } else {
+        // Si ce sont des nombres
+        if (typeof aValue === "number" && typeof bValue === "number") {
+          comparison = aValue - bValue;
+        } else {
+          // Sinon, on compare les chaînes de caractères
+          comparison = aValue.toString().localeCompare(bValue.toString());
+        }
+      }
+
+      return direction === "asc" ? comparison : -comparison;
+    });
+  };
+
+  // Tri des projets
+  const sortedProjects = sortItems(
+    filteredProjects,
+    sortConfig.key,
+    sortConfig.direction
   );
 
-  // Fonction pour passer à la page suivante
+  // Pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = sortedProjects.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Fonctions pour la pagination
   const handleNextPage = () => {
     if (currentPage * itemsPerPage < filteredProjects.length) {
       setCurrentPage(currentPage + 1);
     }
   };
-
-  // Fonction pour revenir à la page précédente
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
-  };
-
-  const handleSelectAll = (e) => {
-    if (e.target.checked) {
-      // Sélectionner toutes les lignes de la page actuelle
-      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i)); // Met à jour la sélection avec toutes les lignes filtrées
-    } else {
-      // Désélectionner toutes les lignes
-      setSelectedRows([]);
-    }
-    setSelectAll(e.target.checked);
-  };
-
-  const handleRowSelect = (e, index) => {
-    const newSelectedRows = e.target.checked
-      ? [...selectedRows, index]
-      : selectedRows.filter((id) => id !== index);
-    setSelectedRows(newSelectedRows);
-    setSelectAll(newSelectedRows.length === currentItems.length); // Mettre à jour l'état selectAll si toutes les lignes filtrées sont sélectionnées
   };
 
   return (
@@ -85,49 +115,80 @@ export function ProjectsList() {
               placeholder="Rechercher.."
               className="py-3 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
               value={searchTerm}
-              onChange={handleSearch} // Mise à jour de l'état de recherche
+              onChange={handleSearch}
             />
-            <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>
           <Link to="/projects/create" className="btn-secondary">
-            <Plus className="size-5" />
             Ajouter un projet
           </Link>
         </div>
       </div>
+
       <table className="min-w-full table-auto border-collapse border border-gray-200">
         <thead className="bg-custom-light-grey">
           <tr>
-            <th
-              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-center">
-                <input
-                  type="checkbox"
-                  className="size-4"
-                  checked={selectAll}
-                  onChange={handleSelectAll}
-                />
-              </div>
-            </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               ID
             </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
+              onClick={() => handleSort("nom_du_projet")}
+            >
               Nom du projet
+              {sortConfig.key === "nom_du_projet" &&
+                (sortConfig.direction === "asc" ? (
+                  <ChevronUp className="inline w-4" />
+                ) : (
+                  <ChevronDown className="inline w-4" />
+                ))}
             </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              onClick={() => handleSort("type_de_projet")}
+              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
+            >
               Type de projet
+              {sortConfig.key === "type_de_projet" &&
+                (sortConfig.direction === "asc" ? (
+                  <ChevronUp className="inline w-4" />
+                ) : (
+                  <ChevronDown className="inline w-4" />
+                ))}
             </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              onClick={() => handleSort("client")}
+              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
+            >
               Client
+              {sortConfig.key === "client" &&
+                (sortConfig.direction === "asc" ? (
+                  <ChevronUp className="inline w-4" />
+                ) : (
+                  <ChevronDown className="inline w-4" />
+                ))}
             </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              onClick={() => handleSort("entreprise")}
+              className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
+            >
               Entreprise
+              {sortConfig.key === "entreprise" &&
+                (sortConfig.direction === "asc" ? (
+                  <ChevronUp className="inline w-4" />
+                ) : (
+                  <ChevronDown className="inline w-4" />
+                ))}
             </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+            <th
+              className="px-4 py-3 border-b flex items-center gap-1 border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
+              onClick={() => handleSort("dernière_modification")}
+            >
               Dernière modification
+              {sortConfig.key === "dernière_modification" &&
+                (sortConfig.direction === "asc" ? (
+                  <ChevronUp className="inline w-4" />
+                ) : (
+                  <ChevronDown className="inline w-4" />
+                ))}
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               Hubspot ID
@@ -143,19 +204,6 @@ export function ProjectsList() {
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
             >
-              <td
-                onClick={(e) => e.stopPropagation()}
-                className="px-4 py-4 border-b border-gray-200 cursor-default"
-              >
-                <div className="flex items-center justify-center">
-                  <input
-                    className="size-4 cursor-pointer"
-                    type="checkbox"
-                    checked={selectedRows.includes(i)}
-                    onChange={(e) => handleRowSelect(e, i)}
-                  />
-                </div>
-              </td>
               <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
               <td className="px-4 py-4 border-b border-gray-200">
                 {x.nom_du_projet}
@@ -177,30 +225,29 @@ export function ProjectsList() {
           ))}
         </tbody>
       </table>
+
       <div className="w-full flex justify-end gap-3">
         <button
           className={`py-2 px-3 flex items-center gap-2 rounded-full ${
             currentPage === 1
-              ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
-              : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif
+              ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed"
+              : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer"
           }`}
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
         >
-          <ChevronLeft className="size-5" />
           Précedent
         </button>
         <button
           className={`py-3 px-4 flex items-center gap-2 rounded-full ${
             currentPage * itemsPerPage >= filteredProjects.length
-              ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed" // Désactivé
-              : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer" // Actif
+              ? "bg-custom-primary-very-low-opacity text-custom-grey cursor-not-allowed"
+              : "bg-custom-primary text-white hover:brightness-[0.85] duration-150 cursor-pointer"
           }`}
           onClick={handleNextPage}
           disabled={currentPage * itemsPerPage >= filteredProjects.length}
         >
           Suivant
-          <ChevronRight className="size-5" />
         </button>
       </div>
     </div>

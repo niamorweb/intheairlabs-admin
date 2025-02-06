@@ -22,7 +22,9 @@ export default function TypesCreate() {
 
         <form className="flex flex-col gap-6 w-full">
           <div className="flex-1">
-            <label htmlFor="project_type">Nom du type de projet</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Nom du type de projet
+            </label>
             <input
               type="text"
               id="project_type"
@@ -43,7 +45,9 @@ export default function TypesCreate() {
 
         <form className="flex flex-col gap-6 w-full">
           <div className="flex-1">
-            <label htmlFor="project_type">Nom du type de donnée</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Nom du type de donnée
+            </label>
             <input
               type="text"
               id="project_type"
@@ -54,7 +58,9 @@ export default function TypesCreate() {
             />
           </div>{" "}
           <div className="flex-1">
-            <label htmlFor="project_type">Description du type de donnée</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Description du type de donnée
+            </label>
             <input
               type="text"
               id="project_type"
@@ -65,7 +71,9 @@ export default function TypesCreate() {
             />
           </div>
           <div className="flex-1">
-            <label htmlFor="project_type">Fichier Shapefile</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Fichier Shapefile
+            </label>
             <p className="text-sm text-custom-dark-grey ">
               Télécharger le fichier Shapefile pour créer ce nouveau tableau de
               type de données
@@ -90,7 +98,9 @@ export default function TypesCreate() {
 
         <form className="flex flex-col gap-6 w-full">
           <div className="flex-1">
-            <label htmlFor="project_type">Nom du type de fichier</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Nom du type de fichier
+            </label>
             <input
               type="text"
               id="project_type"
@@ -124,7 +134,9 @@ export default function TypesCreate() {
 
         <form className="flex flex-col gap-6 w-full">
           <div className="flex-1">
-            <label htmlFor="project_type">Extension</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Extension
+            </label>
             <input
               type="text"
               id="project_type"
@@ -135,7 +147,9 @@ export default function TypesCreate() {
             />
           </div>{" "}
           <div className="flex-1">
-            <label htmlFor="project_type">Type de fichier</label>
+            <label className="required_input_label" htmlFor="project_type">
+              Type de fichier
+            </label>
             <input
               type="text"
               id="project_type"

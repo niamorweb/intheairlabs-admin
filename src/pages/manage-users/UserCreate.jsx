@@ -81,7 +81,7 @@ export function UserCreate() {
                   type="text"
                   value={userData.nom}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-mdrequired_input_label"
                   required
                 />
               </div>
@@ -99,7 +99,7 @@ export function UserCreate() {
                   type="text"
                   value={userData.prenom}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-mdrequired_input_label"
                   required
                 />
               </div>
@@ -117,7 +117,7 @@ export function UserCreate() {
                   type="email"
                   value={userData.email}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-mdrequired_input_label"
                   required
                 />
               </div>
@@ -135,7 +135,7 @@ export function UserCreate() {
                   type="tel"
                   value={userData.numero_de_tel}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-mdrequired_input_label"
                   required
                 />
               </div>
@@ -152,7 +152,7 @@ export function UserCreate() {
                   name="permission"
                   value={userData.permission}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-mdrequired_input_label"
                   required
                 >
                   <option value="">Sélectionner une permission</option>
@@ -174,7 +174,7 @@ export function UserCreate() {
                   type="date"
                   value={userData.date_creation}
                   onChange={handleChange}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-mdrequired_input_label"
                   required
                 />
               </div>

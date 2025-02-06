@@ -20,7 +20,9 @@ export default function SectorsCreate() {
 
         <form className="flex flex-col gap-6 w-full">
           <div className="flex-1">
-            <label htmlFor="project_type">Secteur d'activité</label>
+            <label htmlFor="project_type" className="required_input_label">
+              Secteur d'activité
+            </label>
             <input
               type="text"
               id="project_type"

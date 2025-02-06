@@ -63,7 +63,9 @@ export default function ProjectsEdit() {
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6 w-full">
         <div>
-          <label htmlFor="projectName">Nom du projet</label>
+          <label className="required_input_label" htmlFor="projectName">
+            Nom du projet
+          </label>
           <input
             type="text"
             id="projectName"
@@ -78,7 +80,9 @@ export default function ProjectsEdit() {
 
         {/* Hubspot project ID */}
         <div>
-          <label htmlFor="hubspotProjectId">Hubspot project ID</label>
+          <label className="required_input_label" htmlFor="hubspotProjectId">
+            Hubspot project ID
+          </label>
           <input
             type="text"
             name="hubspotProjectId"
@@ -106,7 +110,9 @@ export default function ProjectsEdit() {
 
         {/* Company Name */}
         <div>
-          <label htmlFor="companyName">Entreprise</label>
+          <label className="required_input_label" htmlFor="companyName">
+            Entreprise
+          </label>
           <input
             type="text"
             id="companyName"
@@ -136,7 +142,9 @@ export default function ProjectsEdit() {
 
         {/* Client Name */}
         <div>
-          <label htmlFor="clientName">Client</label>
+          <label className="required_input_label" htmlFor="clientName">
+            Client
+          </label>
           <input
             type="text"
             id="clientName"
@@ -151,7 +159,9 @@ export default function ProjectsEdit() {
 
         {/* KML File */}
         <div>
-          <label htmlFor="kmlFile">Fichier KML</label>
+          <label className="required_input_label" htmlFor="kmlFile">
+            Fichier KML
+          </label>
           <input
             type="file"
             id="kmlFile"
@@ -179,7 +189,9 @@ export default function ProjectsEdit() {
         <div className="flex flex-col gap-10">
           <div className="w-full flex flex-col gap-3">
             <div className="flex flex-col gap-2">
-              <label htmlFor="kmlFile">Fichier KML</label>
+              <label className="required_input_label" htmlFor="kmlFile">
+                Fichier KML
+              </label>
               <button
                 type="submit"
                 className="w-full cursor-pointer flex items-center gap-3 justify-center py-4 col-span-2 px-4 bg-custom-secondary-very-low-opacity hover:bg-custom-secondary-low-opacity duration-150 text-custom-secondary rounded-md focus:outline-none focus:ring-1 focus:ring-custom-secondary focus:ring-opacity-50"

@@ -51,6 +51,12 @@
     @apply w-full cursor-pointer py-3 px-4 bg-custom-very-light-grey text-custom-dark-grey rounded-full;
   }
 
+  .required_input_label::after {
+    content: "*";
+    color: #ff8c00;
+    margin-left: 0.25rem;
+    position: absolute;
+  }
   body {
     @apply text-custom-black;
   }

@@ -57,7 +57,9 @@ export default function ProjectsCreate() {
           </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
             <div className="">
-              <label htmlFor="projectName">Nom du projet</label>
+              <label className="required_input_label" htmlFor="projectName">
+                Nom du projet
+              </label>
               <input
                 type="text"
                 id="projectName"
@@ -72,7 +74,12 @@ export default function ProjectsCreate() {
 
             {/* Hubspot project ID */}
             <div className="">
-              <label htmlFor="hubspotProjectId">Hubspot project ID</label>
+              <label
+                className="required_input_label"
+                htmlFor="hubspotProjectId"
+              >
+                Hubspot project ID
+              </label>
               <input
                 type="text"
                 name="hubspotProjectId"
@@ -100,7 +107,9 @@ export default function ProjectsCreate() {
 
             {/* Company Name */}
             <div className="">
-              <label htmlFor="companyName">Entreprise</label>
+              <label className="required_input_label" htmlFor="companyName">
+                Entreprise
+              </label>
               <input
                 type="text"
                 id="companyName"
@@ -115,7 +124,9 @@ export default function ProjectsCreate() {
 
             {/* Project Type */}
             <div className="">
-              <label htmlFor="projectType">Type de projet</label>
+              <label className="required_input_label" htmlFor="projectType">
+                Type de projet
+              </label>
               <input
                 type="text"
                 id="projectType"
@@ -130,7 +141,9 @@ export default function ProjectsCreate() {
 
             {/* Client Name */}
             <div className="">
-              <label htmlFor="clientName">Client</label>
+              <label className="required_input_label" htmlFor="clientName">
+                Client
+              </label>
               <input
                 type="text"
                 id="clientName"
@@ -145,7 +158,9 @@ export default function ProjectsCreate() {
 
             {/* KML File */}
             <div className="">
-              <label htmlFor="kmlFile">Fichier KML</label>
+              <label className="required_input_label" htmlFor="kmlFile">
+                Fichier KML
+              </label>
               <input
                 type="file"
                 id="kmlFile"

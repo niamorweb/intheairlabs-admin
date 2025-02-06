@@ -79,7 +79,9 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="nom_du_client">Nom du client</label>
+            <label htmlFor="nom_du_client" className="required_input_label">
+              Nom du client
+            </label>
             <input
               type="text"
               id="nom_du_client"
@@ -93,7 +95,9 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="prenom_du_client">Prénom du client</label>
+            <label htmlFor="prenom_du_client" className="required_input_label">
+              Prénom du client
+            </label>
             <input
               type="text"
               id="prenom_du_client"
@@ -107,7 +111,9 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="telephone">Numéro de téléphone</label>
+            <label htmlFor="telephone" className="required_input_label">
+              Numéro de téléphone
+            </label>
             <input
               type="text"
               id="telephone"
@@ -121,7 +127,9 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="entreprise">Nom de l'entreprise</label>
+            <label htmlFor="entreprise" className="required_input_label">
+              Nom de l'entreprise
+            </label>
             <input
               type="text"
               id="entreprise"
@@ -135,7 +143,9 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="hubspot_id">Hubspot ID</label>
+            <label htmlFor="hubspot_id" className="required_input_label">
+              Hubspot ID
+            </label>
             <input
               type="text"
               id="hubspot_id"

@@ -11,7 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useAuth } from "./context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // Définir les éléments de navigation avec l'icône Plus là où c'est nécessaire
 const navItems = [
@@ -100,16 +100,19 @@ function Layout({ children }) {
                 <span className="uppercase text-xs">{section.label}</span>
                 <div className="flex flex-col flex-no-wrap">
                   {section.links.map((link, linkIndex) => (
-                    <Link
+                    <NavLink
                       to={link.href}
                       key={linkIndex}
-                      // href={link.href}
-                      className="flex items-center gap-2 text-sm whitespace-nowrap hover:bg-white/10 p-3 rounded-md duration-150"
+                      end
+                      className={({ isActive }) =>
+                        isActive
+                          ? "flex items-center gap-2 text-sm whitespace-nowrap bg-white/10 p-3 rounded-md duration-150"
+                          : "flex items-center gap-2 text-sm whitespace-nowrap hover:bg-white/10 p-3 rounded-md duration-150"
+                      }
+                      // className="flex items-center gap-2 text-sm whitespace-nowrap hover:bg-white/10 p-3 rounded-md duration-150"
                     >
-                      {link.icon || section.icon}{" "}
-                      {/* Utiliser l'icône spécifique pour chaque lien */}
-                      {link.text}
-                    </Link>
+                      {link.icon || section.icon} {link.text}
+                    </NavLink>
                   ))}
                 </div>
               </div>
@@ -125,7 +128,7 @@ function Layout({ children }) {
               className="flex items-center gap-2 text-sm hover:bg-custom-very-light-grey p-3 duration-150 cursor-pointer rounded-md"
             >
               <User className="size-4" />
-              Mon compte {isLoggedIn && authUser.email}
+              Mon compte
             </Link>
             <Link
               to="/manage-users"

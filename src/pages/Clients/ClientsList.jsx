@@ -2,6 +2,9 @@ import { Plus, Filter, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Clients from "../../data/clients";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getClients } from "../../api/clientsApi";
+import toast from "react-hot-toast";
+import { useData } from "../../context/DataContext";
 
 export function ClientsList() {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -9,6 +12,12 @@ export function ClientsList() {
   const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
   const [currentPage, setCurrentPage] = useState(1); // Page actuelle
   const itemsPerPage = 20; // Nombre d'éléments par page
+
+  const { clients, users, projects, companies } = useData();
+  console.log("clients === ", clients);
+  console.log("users === ", users);
+  console.log("projects === ", projects);
+  console.log("companies === ", companies);
 
   const navigate = useNavigate();
 
@@ -66,12 +75,15 @@ export function ClientsList() {
   };
 
   const handleRowSelect = (e, index) => {
+    getClients();
     const newSelectedRows = e.target.checked
       ? [...selectedRows, index]
       : selectedRows.filter((id) => id !== index);
     setSelectedRows(newSelectedRows);
     setSelectAll(newSelectedRows.length === currentItems.length); // Mettre à jour l'état selectAll si toutes les lignes filtrées sont sélectionnées
   };
+
+  const notify = () => toast.success("Here is your toast.");
 
   return (
     <div className="w-full flex flex-col gap-10">
