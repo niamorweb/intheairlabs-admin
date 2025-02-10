@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Projects from "../../data/projects";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export function ProjectsList() {
@@ -110,6 +110,7 @@ export function ProjectsList() {
         <h1 className="text-4xl font-medium">Listes des projets</h1>
         <div className="flex items-center gap-3">
           <div className="relative">
+            <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
             <input
               type="search"
               placeholder="Rechercher.."

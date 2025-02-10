@@ -1,38 +1,62 @@
-import { ChevronRight, Plus } from "lucide-react";
+import { ChevronRight, Plus, Search } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ProjectTypes from "../../data/projectTypes";
+import companies from "../../data/companies";
+import clients from "../../data/clients";
+import Select from "react-select";
 
 export default function ProjectsCreate() {
   const [formData, setFormData] = useState({
     projectName: "",
     hubspotProjectId: "",
     description: "",
-    companyName: "",
-    projectType: "",
     clientName: "",
-    kmlFile: null, // On stocke un fichier pour le KML
+    projectType: "",
+    kmlFile: null,
+    clientId: "",
+    linkedCompanyId: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type === "file") {
+  const handleChange = (e, valueGiven, elementGiven) => {
+    if (valueGiven && elementGiven) {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0], // On prend le premier fichier sélectionné
+        [elementGiven]: valueGiven,
       }));
     } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
+      const { name, value, type, files } = e.target;
+      if (type === "file") {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: files[0],
+        }));
+      } else {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value || "",
+        }));
+      }
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Traitement de la soumission (exemple : envoyer les données à une API)
     console.log("Form submitted:", formData);
   };
+
+  const clientsFormatted = clients.map((x) => {
+    const company = companies.find(
+      (company) => company.id === x.company_linked
+    );
+    return {
+      id: x.id,
+      companyId: x.company_linked,
+      label: `${company ? company.entreprise : "Entreprise inconnue"} - ${
+        x.nom_du_client
+      } ${x.prenom_du_client}`,
+    };
+  });
 
   return (
     <div className="flex flex-col items-start w-full gap-8 max-w-[700px]">
@@ -56,7 +80,7 @@ export default function ProjectsCreate() {
             </p>
           </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
-            <div className="">
+            <div>
               <label className="required_input_label" htmlFor="projectName">
                 Nom du projet
               </label>
@@ -68,12 +92,11 @@ export default function ProjectsCreate() {
                 onChange={handleChange}
                 className="input"
                 placeholder="Entrez le nom du projet"
-                required
               />
             </div>
 
             {/* Hubspot project ID */}
-            <div className="">
+            <div>
               <label
                 className="required_input_label"
                 htmlFor="hubspotProjectId"
@@ -87,12 +110,11 @@ export default function ProjectsCreate() {
                 onChange={handleChange}
                 className="input"
                 placeholder="Entrez le projectID de Hubspot"
-                required
               />
             </div>
 
             {/* Description */}
-            <div className=" col-span-2">
+            <div className="col-span-2">
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
@@ -101,63 +123,58 @@ export default function ProjectsCreate() {
                 onChange={handleChange}
                 className="input"
                 placeholder="Entrez la description"
-                required
-              />
-            </div>
-
-            {/* Company Name */}
-            <div className="">
-              <label className="required_input_label" htmlFor="companyName">
-                Entreprise
-              </label>
-              <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleChange}
-                className="input"
-                placeholder="Sélectionnez l'entreprise"
-                required
-              />
-            </div>
-
-            {/* Project Type */}
-            <div className="">
-              <label className="required_input_label" htmlFor="projectType">
-                Type de projet
-              </label>
-              <input
-                type="text"
-                id="projectType"
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleChange}
-                className="input"
-                placeholder="Sélectionnez le type de projet"
-                required
               />
             </div>
 
             {/* Client Name */}
-            <div className="">
+            <div className="flex flex-col gap-2">
               <label className="required_input_label" htmlFor="clientName">
                 Client
               </label>
-              <input
-                type="text"
-                id="clientName"
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                isClearable
+                isSearchable
                 name="clientName"
-                value={formData.clientName}
-                onChange={handleChange}
-                className="input"
-                placeholder="Sélectionnez le client"
-                required
+                options={clientsFormatted}
+                onChange={(selectedClient) => {
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    clientName: selectedClient ? selectedClient.label : "",
+                    clientId: selectedClient ? selectedClient.id : "", // ID du client
+                    linkedCompanyId: selectedClient
+                      ? selectedClient.companyId
+                      : "", // ID de l'entreprise liée
+                  }));
+                }}
+              />
+            </div>
+
+            {/* Project Type */}
+            <div className="flex flex-col gap-2">
+              <label className="required_input_label" htmlFor="projectType">
+                Type de projet
+              </label>
+              <Select
+                className="basic-single"
+                classNamePrefix="select"
+                defaultValue={ProjectTypes[0].id}
+                isClearable
+                isSearchable
+                name="projectType"
+                options={ProjectTypes}
+                onChange={(selectedOption) => {
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    projectType: selectedOption ? selectedOption.id : "", // Vérifie la sélection avant de l'ajouter
+                  }));
+                }}
               />
             </div>
 
             {/* KML File */}
-            <div className="">
+            <div>
               <label className="required_input_label" htmlFor="kmlFile">
                 Fichier KML
               </label>
@@ -167,10 +184,9 @@ export default function ProjectsCreate() {
                 name="kmlFile"
                 onChange={handleChange}
                 className="input"
-                required
               />
             </div>
-            {/* <div></div> */}
+
             <button
               type="submit"
               className="w-fit self-end flex items-center gap-2 cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"

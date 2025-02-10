@@ -7,6 +7,7 @@ const Clients = [
     entreprise: "Entreprise A",
     derniere_modification: "2025-01-25",
     hubspot_id: "HS12345",
+    company_linked: 1,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const Clients = [
     entreprise: "Entreprise B",
     derniere_modification: "2025-01-20",
     hubspot_id: "HS12346",
+    company_linked: 1,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const Clients = [
     entreprise: "Entreprise C",
     derniere_modification: "2025-01-22",
     hubspot_id: "HS12347",
+    company_linked: 1,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ const Clients = [
     entreprise: "Entreprise D",
     derniere_modification: "2025-01-18",
     hubspot_id: "HS12348",
+    company_linked: 4,
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ const Clients = [
     entreprise: "Entreprise E",
     derniere_modification: "2025-01-19",
     hubspot_id: "HS12349",
+    company_linked: 5,
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ const Clients = [
     entreprise: "Entreprise F",
     derniere_modification: "2025-01-17",
     hubspot_id: "HS12350",
+    company_linked: 6,
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ const Clients = [
     entreprise: "Entreprise G",
     derniere_modification: "2025-01-15",
     hubspot_id: "HS12351",
+    company_linked: 7,
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ const Clients = [
     entreprise: "Entreprise H",
     derniere_modification: "2025-01-14",
     hubspot_id: "HS12352",
+    company_linked: 8,
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ const Clients = [
     entreprise: "Entreprise I",
     derniere_modification: "2025-01-13",
     hubspot_id: "HS12353",
+    company_linked: 9,
   },
   {
     id: 10,
@@ -88,6 +97,7 @@ const Clients = [
     entreprise: "Entreprise J",
     derniere_modification: "2025-01-12",
     hubspot_id: "HS12354",
+    company_linked: 10,
   },
   {
     id: 11,
@@ -97,6 +107,7 @@ const Clients = [
     entreprise: "Entreprise K",
     derniere_modification: "2025-01-11",
     hubspot_id: "HS12355",
+    company_linked: 11,
   },
   {
     id: 12,
@@ -106,6 +117,7 @@ const Clients = [
     entreprise: "Entreprise L",
     derniere_modification: "2025-01-10",
     hubspot_id: "HS12356",
+    company_linked: 12,
   },
   {
     id: 13,
@@ -115,6 +127,7 @@ const Clients = [
     entreprise: "Entreprise M",
     derniere_modification: "2025-01-09",
     hubspot_id: "HS12357",
+    company_linked: 13,
   },
   {
     id: 14,
@@ -124,6 +137,7 @@ const Clients = [
     entreprise: "Entreprise N",
     derniere_modification: "2025-01-08",
     hubspot_id: "HS12358",
+    company_linked: 14,
   },
   {
     id: 15,
@@ -133,6 +147,7 @@ const Clients = [
     entreprise: "Entreprise O",
     derniere_modification: "2025-01-07",
     hubspot_id: "HS12359",
+    company_linked: 15,
   },
   {
     id: 16,
@@ -142,6 +157,7 @@ const Clients = [
     entreprise: "Entreprise P",
     derniere_modification: "2025-01-06",
     hubspot_id: "HS12360",
+    company_linked: 16,
   },
   {
     id: 17,
@@ -151,6 +167,7 @@ const Clients = [
     entreprise: "Entreprise Q",
     derniere_modification: "2025-01-05",
     hubspot_id: "HS12361",
+    company_linked: 17,
   },
   {
     id: 18,
@@ -160,6 +177,7 @@ const Clients = [
     entreprise: "Entreprise R",
     derniere_modification: "2025-01-04",
     hubspot_id: "HS12362",
+    company_linked: 18,
   },
   {
     id: 19,
@@ -169,6 +187,7 @@ const Clients = [
     entreprise: "Entreprise S",
     derniere_modification: "2025-01-03",
     hubspot_id: "HS12363",
+    company_linked: 19,
   },
   {
     id: 20,
@@ -178,6 +197,7 @@ const Clients = [
     entreprise: "Entreprise T",
     derniere_modification: "2025-01-02",
     hubspot_id: "HS12364",
+    company_linked: 20,
   },
   {
     id: 21,
@@ -187,6 +207,7 @@ const Clients = [
     entreprise: "Entreprise U",
     derniere_modification: "2025-01-01",
     hubspot_id: "HS12365",
+    company_linked: 21,
   },
   {
     id: 22,
@@ -196,6 +217,7 @@ const Clients = [
     entreprise: "Entreprise V",
     derniere_modification: "2024-12-31",
     hubspot_id: "HS12366",
+    company_linked: 22,
   },
   {
     id: 23,
@@ -205,6 +227,7 @@ const Clients = [
     entreprise: "Entreprise W",
     derniere_modification: "2024-12-30",
     hubspot_id: "HS12367",
+    company_linked: 23,
   },
   {
     id: 24,
@@ -214,6 +237,7 @@ const Clients = [
     entreprise: "Entreprise X",
     derniere_modification: "2024-12-29",
     hubspot_id: "HS12368",
+    company_linked: 24,
   },
   {
     id: 25,
@@ -223,6 +247,7 @@ const Clients = [
     entreprise: "Entreprise Y",
     derniere_modification: "2024-12-28",
     hubspot_id: "HS12369",
+    company_linked: 25,
   },
   {
     id: 26,
@@ -232,6 +257,7 @@ const Clients = [
     entreprise: "Entreprise Z",
     derniere_modification: "2024-12-27",
     hubspot_id: "HS12370",
+    company_linked: 26,
   },
   {
     id: 27,
@@ -241,6 +267,7 @@ const Clients = [
     entreprise: "Entreprise AA",
     derniere_modification: "2024-12-26",
     hubspot_id: "HS12371",
+    company_linked: 27,
   },
   {
     id: 28,
@@ -250,6 +277,7 @@ const Clients = [
     entreprise: "Entreprise AB",
     derniere_modification: "2024-12-25",
     hubspot_id: "HS12372",
+    company_linked: 28,
   },
   {
     id: 29,
@@ -259,6 +287,7 @@ const Clients = [
     entreprise: "Entreprise AC",
     derniere_modification: "2024-12-24",
     hubspot_id: "HS12373",
+    company_linked: 29,
   },
   {
     id: 30,
@@ -268,6 +297,7 @@ const Clients = [
     entreprise: "Entreprise AD",
     derniere_modification: "2024-12-23",
     hubspot_id: "HS12374",
+    company_linked: 30,
   },
   {
     id: 31,
@@ -277,6 +307,7 @@ const Clients = [
     entreprise: "Entreprise AE",
     derniere_modification: "2024-12-22",
     hubspot_id: "HS12375",
+    company_linked: 31,
   },
   {
     id: 32,
@@ -286,6 +317,7 @@ const Clients = [
     entreprise: "Entreprise AF",
     derniere_modification: "2024-12-21",
     hubspot_id: "HS12376",
+    company_linked: 32,
   },
   {
     id: 33,
@@ -295,6 +327,7 @@ const Clients = [
     entreprise: "Entreprise AG",
     derniere_modification: "2024-12-20",
     hubspot_id: "HS12377",
+    company_linked: 33,
   },
   {
     id: 34,
@@ -304,6 +337,7 @@ const Clients = [
     entreprise: "Entreprise AH",
     derniere_modification: "2024-12-19",
     hubspot_id: "HS12378",
+    company_linked: 34,
   },
   {
     id: 35,
@@ -313,6 +347,7 @@ const Clients = [
     entreprise: "Entreprise AI",
     derniere_modification: "2024-12-18",
     hubspot_id: "HS12379",
+    company_linked: 35,
   },
 ];
 
