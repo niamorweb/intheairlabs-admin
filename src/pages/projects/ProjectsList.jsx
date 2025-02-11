@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Projects from "../../data/projects";
+import Clients from "../../data/clients";
+import Companies from "../../data/companies";
 import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -22,75 +24,79 @@ export function ProjectsList() {
     setCurrentPage(1);
   };
 
+  const formattedProjects = Projects.map((project) => {
+    const client = Clients.find((x) => x.id === project.id);
+    const company = client ? Companies.find((x) => x.id === client.id) : null;
+
+    return {
+      ...project,
+      client: client ? client.lastName + " " + client.firstName : null,
+      company: company && company.tradeName,
+    };
+  });
+
   // Fonction pour filtrer les données
-  const filteredProjects = Projects.filter((project) => {
+  const filteredProjects = formattedProjects.filter((project) => {
     return (
-      project.nom_du_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.type_de_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.projectType.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.entreprise.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.dernière_modification
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      project.hubspot_id.toString().includes(searchTerm) ||
+      project.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.hubspotId.toString().includes(searchTerm) ||
       project.id.toString().includes(searchTerm)
     );
   });
 
-  // Fonction pour gérer le tri
-  const handleSort = (key) => {
-    console.log("key key : : ", key);
+  // // Fonction pour gérer le tri
+  // const handleSort = (key) => {
+  //   console.log("key key : : ", key);
 
-    let direction = "asc";
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
+  //   let direction = "asc";
+  //   if (sortConfig.key === key && sortConfig.direction === "asc") {
+  //     direction = "desc";
+  //   }
+  //   setSortConfig({ key, direction });
+  // };
 
-  // Fonction pour trier les projets avec gestion des différents types (string, number, date)
-  const sortItems = (items, key, direction) => {
-    return items.sort((a, b) => {
-      const aValue = a[key];
-      const bValue = b[key];
+  // // Fonction pour trier les projets avec gestion des différents types (string, number, date)
+  // const sortItems = (items, key, direction) => {
+  //   return items.sort((a, b) => {
+  //     const aValue = a[key];
+  //     const bValue = b[key];
 
-      console.log("a :::: ", a);
-      console.log("key :::: ", key);
-      console.log("a[key] :::: ", a[key]);
-      console.log("b :::: ", b);
-      console.log("aValue :::: ", aValue);
-      console.log("bValue :::: ", bValue);
+  //     let comparison = 0;
 
-      let comparison = 0;
+  //     // Si la valeur est une date (on suppose que la date est sous forme de string)
+  //     if (Date.parse(aValue) && Date.parse(bValue)) {
+  //       comparison = new Date(aValue) - new Date(bValue);
+  //     } else {
+  //       // Si ce sont des nombres
+  //       if (typeof aValue === "number" && typeof bValue === "number") {
+  //         comparison = aValue - bValue;
+  //       } else {
+  //         // Sinon, on compare les chaînes de caractères
+  //         comparison = aValue.toString().localeCompare(bValue.toString());
+  //       }
+  //     }
 
-      // Si la valeur est une date (on suppose que la date est sous forme de string)
-      if (Date.parse(aValue) && Date.parse(bValue)) {
-        comparison = new Date(aValue) - new Date(bValue);
-      } else {
-        // Si ce sont des nombres
-        if (typeof aValue === "number" && typeof bValue === "number") {
-          comparison = aValue - bValue;
-        } else {
-          // Sinon, on compare les chaînes de caractères
-          comparison = aValue.toString().localeCompare(bValue.toString());
-        }
-      }
+  //     return direction === "asc" ? comparison : -comparison;
+  //   });
+  // };
 
-      return direction === "asc" ? comparison : -comparison;
-    });
-  };
-
-  // Tri des projets
-  const sortedProjects = sortItems(
-    filteredProjects,
-    sortConfig.key,
-    sortConfig.direction
-  );
+  // // Tri des projets
+  // const sortedProjects = sortItems(
+  //   filteredProjects,
+  //   sortConfig.key,
+  //   sortConfig.direction
+  // );
 
   // Pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = sortedProjects.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredProjects.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   // Fonctions pour la pagination
   const handleNextPage = () => {
@@ -133,53 +139,53 @@ export function ProjectsList() {
             </th>
             <th
               className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
-              onClick={() => handleSort("nom_du_projet")}
+              // onClick={() => handleSort("nom_du_projet")}
             >
               Nom du projet
-              {sortConfig.key === "nom_du_projet" &&
+              {/* {sortConfig.key === "nom_du_projet" &&
                 (sortConfig.direction === "asc" ? (
                   <ChevronUp className="inline w-4" />
                 ) : (
                   <ChevronDown className="inline w-4" />
-                ))}
+                ))} */}
             </th>
             <th
-              onClick={() => handleSort("type_de_projet")}
+              // onClick={() => handleSort("type_de_projet")}
               className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
             >
               Type de projet
-              {sortConfig.key === "type_de_projet" &&
+              {/* {sortConfig.key === "type_de_projet" &&
                 (sortConfig.direction === "asc" ? (
                   <ChevronUp className="inline w-4" />
                 ) : (
                   <ChevronDown className="inline w-4" />
-                ))}
+                ))} */}
             </th>
             <th
-              onClick={() => handleSort("client")}
+              // onClick={() => handleSort("client")}
               className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
             >
               Client
-              {sortConfig.key === "client" &&
+              {/* {sortConfig.key === "client" &&
                 (sortConfig.direction === "asc" ? (
                   <ChevronUp className="inline w-4" />
                 ) : (
                   <ChevronDown className="inline w-4" />
-                ))}
+                ))} */}
             </th>
             <th
-              onClick={() => handleSort("entreprise")}
+              // onClick={() => handleSort("entreprise")}
               className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
             >
               Entreprise
-              {sortConfig.key === "entreprise" &&
+              {/* {sortConfig.key === "entreprise" &&
                 (sortConfig.direction === "asc" ? (
                   <ChevronUp className="inline w-4" />
                 ) : (
                   <ChevronDown className="inline w-4" />
-                ))}
+                ))} */}
             </th>
-            <th
+            {/* <th
               className="px-4 py-3 border-b flex items-center gap-1 border-gray-300 text-left text-sm font-semibold text-gray-700 cursor-pointer"
               onClick={() => handleSort("dernière_modification")}
             >
@@ -190,7 +196,7 @@ export function ProjectsList() {
                 ) : (
                   <ChevronDown className="inline w-4" />
                 ))}
-            </th>
+            </th> */}
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               Hubspot ID
             </th>
@@ -206,21 +212,16 @@ export function ProjectsList() {
               className="hover:bg-gray-50 cursor-pointer"
             >
               <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
+              <td className="px-4 py-4 border-b border-gray-200">{x.name}</td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.nom_du_projet}
-              </td>
-              <td className="px-4 py-4 border-b border-gray-200">
-                {x.type_de_projet}
+                {x.projectType}
               </td>
               <td className="px-4 py-4 border-b border-gray-200">{x.client}</td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.entreprise}
+                {x.company}
               </td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.dernière_modification}
-              </td>
-              <td className="px-4 py-4 border-b border-gray-200">
-                {x.hubspot_id}
+                {x.hubspotId}
               </td>
             </tr>
           ))}

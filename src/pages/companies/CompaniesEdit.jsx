@@ -18,14 +18,14 @@ export default function CompaniesEdit() {
   }
 
   const [formData, setFormData] = useState({
-    siret: company.nom_du_projet || "",
-    address: company.nom_du_projet || "",
-    legalName: company.nom_du_projet || "",
-    hubspotId: company.nom_du_projet || "",
-    phoneNumber: company.nom_du_projet || "",
-    sector: company.nom_du_projet || "",
-    tradeName: company.nom_du_projet || "",
-    logo: company.nom_du_projet || null, // On stocke un fichier pour le logo
+    siret: company.siret || "",
+    address: company.address || "",
+    legalName: company.legalName || "",
+    hubspotId: company.hubspotId || "",
+    phoneNumber: company.phoneNumber || "",
+    sector: company.sector || "",
+    tradeName: company.tradeName || "",
+    logo: company.logo || null, // On stocke un fichier pour le logo
   });
 
   const handleChange = (e) => {
@@ -184,14 +184,30 @@ export default function CompaniesEdit() {
             <label htmlFor="logo" className="required_input_label">
               Logo de l'entreprise
             </label>
-            <input
-              type="file"
-              id="logo"
-              name="logo"
-              onChange={handleChange}
-              className="input"
-              required
-            />
+
+            {formData.logo ? (
+              <div className="flex items-center gap-4">
+                <img className="size-8" src={formData.logo} alt="" />
+                <input
+                  type="file"
+                  id="logo"
+                  name="logo"
+                  onChange={handleChange}
+                  className="input"
+                  placeholder="Changer le logo"
+                  required
+                />
+              </div>
+            ) : (
+              <input
+                type="file"
+                id="logo"
+                name="logo"
+                onChange={handleChange}
+                className="input"
+                required
+              />
+            )}
           </div>
           <button
             type="submit"

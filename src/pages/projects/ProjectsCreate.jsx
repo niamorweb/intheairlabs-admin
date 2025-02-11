@@ -5,6 +5,7 @@ import ProjectTypes from "../../data/projectTypes";
 import companies from "../../data/companies";
 import clients from "../../data/clients";
 import Select from "react-select";
+import toast from "react-hot-toast";
 
 export default function ProjectsCreate() {
   const [formData, setFormData] = useState({
@@ -12,10 +13,10 @@ export default function ProjectsCreate() {
     hubspotProjectId: "",
     description: "",
     clientName: "",
-    projectType: "",
+    projectType: null,
     kmlFile: null,
     clientId: "",
-    linkedCompanyId: "",
+    linkedCompanyId: null,
   });
 
   const handleChange = (e, valueGiven, elementGiven) => {
@@ -40,9 +41,18 @@ export default function ProjectsCreate() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.clientId) {
+      toast.error("Veuillez ajouter le client associé à ce projet");
+      return;
+    }
+    if (!formData.projectType) {
+      toast.error("Veuillez ajouter le type de ce projet");
+      return;
+    }
     console.log("Form submitted:", formData);
+    toast.success("Projet ajouté");
   };
 
   const clientsFormatted = clients.map((x) => {
@@ -92,6 +102,7 @@ export default function ProjectsCreate() {
                 onChange={handleChange}
                 className="input"
                 placeholder="Entrez le nom du projet"
+                required
               />
             </div>
 
@@ -110,6 +121,7 @@ export default function ProjectsCreate() {
                 onChange={handleChange}
                 className="input"
                 placeholder="Entrez le projectID de Hubspot"
+                required
               />
             </div>
 
@@ -123,6 +135,7 @@ export default function ProjectsCreate() {
                 onChange={handleChange}
                 className="input"
                 placeholder="Entrez la description"
+                required
               />
             </div>
 
@@ -141,11 +154,11 @@ export default function ProjectsCreate() {
                 onChange={(selectedClient) => {
                   setFormData((prevData) => ({
                     ...prevData,
-                    clientName: selectedClient ? selectedClient.label : "",
-                    clientId: selectedClient ? selectedClient.id : "", // ID du client
-                    linkedCompanyId: selectedClient
-                      ? selectedClient.companyId
-                      : "", // ID de l'entreprise liée
+                    // clientName: selectedClient ? selectedClient.label : "",
+                    clientId: selectedClient ? selectedClient.id : "",
+                    // linkedCompanyId: selectedClient
+                    //   ? selectedClient.companyId
+                    //   : "",
                   }));
                 }}
               />
@@ -184,6 +197,7 @@ export default function ProjectsCreate() {
                 name="kmlFile"
                 onChange={handleChange}
                 className="input"
+                required
               />
             </div>
 

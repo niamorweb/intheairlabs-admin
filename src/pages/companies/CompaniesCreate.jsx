@@ -1,6 +1,9 @@
 import { ChevronRight, Plus } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Sectors from "../../data/sectors";
+import Select from "react-select";
+import toast from "react-hot-toast";
 
 export default function CompaniesCreate() {
   const [formData, setFormData] = useState({
@@ -9,10 +12,15 @@ export default function CompaniesCreate() {
     legalName: "",
     hubspotId: "",
     phoneNumber: "",
-    sector: "",
+    sector: null,
     tradeName: "",
-    logo: null, // On stocke un fichier pour le logo
+    logo: null,
   });
+
+  const sectorsFormatted = Sectors.map((x) => ({
+    id: x.id,
+    label: x.label,
+  }));
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -29,10 +37,14 @@ export default function CompaniesCreate() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Traitement de la soumission (exemple : envoyer les données à une API)
+    if (!formData.sector) {
+      toast.error("Veuillez ajouter le secteur de l'entreprise");
+      return;
+    }
     console.log("Form submitted:", formData);
+    toast.success("Entreprise ajoutée");
   };
 
   return (
@@ -152,19 +164,23 @@ export default function CompaniesCreate() {
             />
           </div>
 
-          <div className="">
-            <label htmlFor="sector" className="required_input_label">
+          <div className="flex flex-col gap-2">
+            <label className="required_input_label" htmlFor="clientName">
               Secteur de l'entreprise
             </label>
-            <input
-              type="text"
-              id="sector"
-              name="sector"
-              value={formData.sector}
-              onChange={handleChange}
-              className="input"
-              placeholder="Entrez le secteur de l'entreprise"
-              required
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              isClearable
+              isSearchable
+              name="clientName"
+              options={sectorsFormatted}
+              onChange={(selectedSector) => {
+                setFormData((prevData) => ({
+                  ...prevData,
+                  sector: selectedSector ? selectedSector.id : "",
+                }));
+              }}
             />
           </div>
 

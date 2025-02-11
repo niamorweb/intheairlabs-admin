@@ -1,5 +1,6 @@
 import { Plus, Filter, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Clients from "../../data/clients";
+import Companies from "../../data/companies";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getClients } from "../../api/clientsApi";
@@ -14,10 +15,6 @@ export function ClientsList() {
   const itemsPerPage = 20; // Nombre d'éléments par page
 
   const { clients, users, projects, companies } = useData();
-  console.log("clients === ", clients);
-  console.log("users === ", users);
-  console.log("projects === ", projects);
-  console.log("companies === ", companies);
 
   const navigate = useNavigate();
 
@@ -27,20 +24,23 @@ export function ClientsList() {
     setCurrentPage(1); // Réinitialiser la page à 1 lors de la recherche
   };
 
+  const formattedClients = Clients.map((client) => {
+    const company = Companies.find((x) => x.id === client.id);
+
+    return {
+      ...client,
+      company: company ? company.tradeName : null,
+    };
+  });
+
   // Fonction pour filtrer les données en fonction du terme de recherche
-  const filteredClients = Clients.filter((client) => {
+  const filteredClients = formattedClients.filter((client) => {
     return (
-      client.nom_du_client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      client.prenom_du_client
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      client.telephone.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      client.entreprise.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      client.derniere_modification
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      client.hubspot_id.toString().includes(searchTerm) || // Convertir hubspot_id en string pour faire la comparaison
-      client.id.toString().includes(searchTerm) // Convertir id en string pour faire la comparaison
+      client.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      client.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      client.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      client.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      client.hubspotId.toString().includes(searchTerm)
     );
   });
 
@@ -136,9 +136,6 @@ export function ClientsList() {
                 Entreprise
               </th>
               <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-                Dernière modification
-              </th>
-              <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
                 Hubspot ID
               </th>
             </tr>
@@ -163,23 +160,16 @@ export function ClientsList() {
                   </div>
                 </td>
                 <td class="px-4 py-4 border-b border-gray-200">{x.id}</td>
+                <td class="px-4 py-4 border-b border-gray-200">{x.lastName}</td>
                 <td class="px-4 py-4 border-b border-gray-200">
-                  {x.nom_du_client}
+                  {x.firstName}
                 </td>
                 <td class="px-4 py-4 border-b border-gray-200">
-                  {x.prenom_du_client}
+                  {x.phoneNumber}
                 </td>
+                <td class="px-4 py-4 border-b border-gray-200">{x.company}</td>
                 <td class="px-4 py-4 border-b border-gray-200">
-                  {x.telephone}
-                </td>
-                <td class="px-4 py-4 border-b border-gray-200">
-                  {x.entreprise}
-                </td>
-                <td class="px-4 py-4 border-b border-gray-200">
-                  {x.derniere_modification}
-                </td>
-                <td class="px-4 py-4 border-b border-gray-200">
-                  {x.hubspot_id}
+                  {x.hubspotId}
                 </td>
               </tr>
             ))}

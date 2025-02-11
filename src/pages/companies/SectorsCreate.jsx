@@ -3,6 +3,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function SectorsCreate() {
+  const [formData, setFormData] = useState({
+    label: "",
+    description: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="flex flex-col items-start w-full max-w-[700px] gap-14">
       <div className="flex items-center gap-2">
@@ -18,32 +36,38 @@ export default function SectorsCreate() {
           <h2 className="text-2xl font-semibold">Ajouter un secteur</h2>
         </div>
 
-        <form className="flex flex-col gap-6 w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
           <div className="flex-1">
-            <label htmlFor="project_type" className="required_input_label">
+            <label htmlFor="label" className="required_input_label">
               Secteur d'activité
             </label>
             <input
               type="text"
-              id="project_type"
-              name="project_type"
+              id="label"
+              name="label"
               className="input"
-              placeholder="Type de projet"
+              placeholder="Nom du secteur"
+              value={formData.label}
+              onChange={handleChange}
               required
             />
           </div>
           <div className="flex-1">
-            <label htmlFor="project_type">Description</label>
+            <label htmlFor="description">Description</label>
             <input
               type="text"
-              id="project_type"
-              name="project_type"
+              id="description"
+              name="description"
               className="input"
-              placeholder="Type de projet"
+              placeholder="Description du secteur"
+              value={formData.description}
+              onChange={handleChange}
               required
             />
           </div>
-          <button className="btn-secondary">Ajouter</button>
+          <button type="submit" className="btn-secondary">
+            Ajouter
+          </button>
         </form>
       </div>
     </div>

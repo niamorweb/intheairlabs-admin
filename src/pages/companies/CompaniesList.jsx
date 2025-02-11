@@ -6,34 +6,27 @@ import { Link, useNavigate } from "react-router-dom";
 export function CompaniesList() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
-  const [currentPage, setCurrentPage] = useState(1); // Page actuelle
-  const itemsPerPage = 20; // Nombre d'éléments par page
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   const navigate = useNavigate();
 
-  // Fonction pour gérer la recherche
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Réinitialiser la page à 1 lors de la recherche
+    setCurrentPage(1);
   };
 
-  // Fonction pour filtrer les données en fonction du terme de recherche
   const filteredCompanies = Companies.filter((company) => {
     return (
-      company.nom_du_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.type_de_projet.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.entreprise.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.dernière_modification
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      company.hubspot_id.toString().includes(searchTerm) || // Convertir hubspot_id en string pour faire la comparaison
-      company.id.toString().includes(searchTerm) // Convertir id en string pour faire la comparaison
+      company.tradeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      company.sector.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      company.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      company.siret.toString().includes(searchTerm) ||
+      company.hubspotId.toString().includes(searchTerm)
     );
   });
 
-  // Calculer les éléments à afficher pour la page actuelle
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredCompanies.slice(
@@ -41,14 +34,12 @@ export function CompaniesList() {
     indexOfLastItem
   );
 
-  // Fonction pour passer à la page suivante
   const handleNextPage = () => {
     if (currentPage * itemsPerPage < filteredCompanies.length) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Fonction pour revenir à la page précédente
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -57,10 +48,8 @@ export function CompaniesList() {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      // Sélectionner toutes les lignes de la page actuelle
-      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i)); // Met à jour la sélection avec toutes les lignes filtrées
+      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i));
     } else {
-      // Désélectionner toutes les lignes
       setSelectedRows([]);
     }
     setSelectAll(e.target.checked);
@@ -71,7 +60,7 @@ export function CompaniesList() {
       ? [...selectedRows, index]
       : selectedRows.filter((id) => id !== index);
     setSelectedRows(newSelectedRows);
-    setSelectAll(newSelectedRows.length === currentItems.length); // Mettre à jour l'état selectAll si toutes les lignes filtrées sont sélectionnées
+    setSelectAll(newSelectedRows.length === currentItems.length);
   };
 
   return (
@@ -112,19 +101,16 @@ export function CompaniesList() {
               ID
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Nom du projet
+              Logo
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Type de projet
+              Nom de l'entreprise
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Client
+              Secteur
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Entreprise
-            </th>
-            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-              Dernière modification
+              Numéro de tél.
             </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               Hubspot ID
@@ -151,21 +137,19 @@ export function CompaniesList() {
                 </div>
               </td>
               <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
+
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.nom_du_projet}
+                <img className="size-6" src={x.logo} alt="" />
               </td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.type_de_projet}
+                {x.tradeName}
               </td>
-              <td className="px-4 py-4 border-b border-gray-200">{x.client}</td>
+              <td className="px-4 py-4 border-b border-gray-200">{x.sector}</td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.entreprise}
-              </td>
-              <td className="px-4 py-4 border-b border-gray-200">
-                {x.dernière_modification}
+                {x.phoneNumber}
               </td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {x.hubspot_id}
+                {x.hubspotId}
               </td>
             </tr>
           ))}

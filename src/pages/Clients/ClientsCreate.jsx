@@ -3,16 +3,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createClient } from "../../api/clientsApi";
 import toast from "react-hot-toast";
+import companies from "../../data/companies";
+import Select from "react-select";
 
 export default function ClientCreate() {
   const [formData, setFormData] = useState({
-    id: "",
-    nom_du_client: "",
-    prenom_du_client: "",
-    telephone: "",
-    entreprise: "",
-    derniere_modification: "",
+    lastName: "",
+    firstName: "",
+    phoneNumber: "",
     hubspot_id: "",
+    linkedin: "",
+    companyId: null,
   });
 
   const handleChange = (e) => {
@@ -25,11 +26,18 @@ export default function ClientCreate() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.companyId) {
+      toast.error("Veuillez ajouter son entreprise");
+      return;
+    }
     console.log("Form submitted:", formData);
-    // const clientAdded = await createClient(formData);
-    // console.log("clientAdded");
     toast.success("Client ajouté");
   };
+
+  const companiesFormatted = companies.map((x) => ({
+    id: x.id,
+    label: x.entreprise,
+  }));
 
   return (
     <div className="flex flex-col items-start w-full gap-8">
@@ -53,27 +61,15 @@ export default function ClientCreate() {
           onSubmit={handleSubmit}
           className="flex flex-col gap-6 w-full max-w-[700px]"
         >
-          <div className=" hidden">
-            <label htmlFor="id">ID</label>
-            <input
-              type="text"
-              id="id"
-              name="id"
-              value={formData.id}
-              onChange={handleChange}
-              className="input"
-            />
-          </div>
-
           <div className="">
-            <label htmlFor="nom_du_client" className="required_input_label">
+            <label htmlFor="lastName" className="required_input_label">
               Nom du client
             </label>
             <input
               type="text"
-              id="nom_du_client"
-              name="nom_du_client"
-              value={formData.nom_du_client}
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
               onChange={handleChange}
               className="input"
               placeholder="Nom du client"
@@ -82,14 +78,14 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="prenom_du_client" className="required_input_label">
+            <label htmlFor="firstName" className="required_input_label">
               Prénom du client
             </label>
             <input
               type="text"
-              id="prenom_du_client"
-              name="prenom_du_client"
-              value={formData.prenom_du_client}
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
               onChange={handleChange}
               className="input"
               placeholder="Prénom du client"
@@ -98,14 +94,14 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="telephone" className="required_input_label">
+            <label htmlFor="phoneNumber" className="required_input_label">
               Numéro de téléphone
             </label>
             <input
               type="text"
-              id="telephone"
-              name="telephone"
-              value={formData.telephone}
+              id="phoneNumber"
+              name="phoneNumber"
+              value={formData.phoneNumber}
               onChange={handleChange}
               className="input"
               placeholder="Numéro de tél."
@@ -114,18 +110,35 @@ export default function ClientCreate() {
           </div>
 
           <div className="">
-            <label htmlFor="entreprise" className="required_input_label">
-              Nom de l'entreprise
-            </label>
+            <label htmlFor="linkedin">LinkedIn</label>
             <input
               type="text"
-              id="entreprise"
-              name="entreprise"
-              value={formData.entreprise}
+              id="linkedin"
+              name="linkedin"
+              value={formData.linkedin}
               onChange={handleChange}
               className="input"
-              placeholder="Entreprise"
-              required
+              placeholder="Lien de son LinkedIn"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="required_input_label" htmlFor="clientName">
+              Entreprise
+            </label>
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              isClearable
+              isSearchable
+              name="clientName"
+              options={companiesFormatted}
+              onChange={(selectedClient) => {
+                setFormData((prevData) => ({
+                  ...prevData,
+                  companyId: selectedClient ? selectedClient.id : "",
+                }));
+              }}
             />
           </div>
 
