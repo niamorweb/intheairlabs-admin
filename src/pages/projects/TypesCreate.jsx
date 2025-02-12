@@ -20,8 +20,11 @@ export default function TypesCreate() {
       <h1 className="text-4xl font-semibold">Ajouter des types</h1>
 
       <AddProjectType />
+      <span className="h-[2px] bg-custom-very-light-grey w-full"></span>
       <AddDataType />
+      <span className="h-[2px] bg-custom-very-light-grey w-full"></span>
       <AddFileType />
+      <span className="h-[2px] bg-custom-very-light-grey w-full"></span>
       <AddFileExtension />
     </div>
   );

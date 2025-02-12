@@ -1,6 +1,9 @@
 import { ChevronRight } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 export function MyAccount() {
+  const { authUser } = useAuth();
+
   return (
     <div className="flex flex-col items-start w-full gap-12 max-w-[700px]">
       <div className="flex flex-col gap-6 w-full">
@@ -28,6 +31,7 @@ export function MyAccount() {
                   name="nom"
                   type="text"
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  defaultValue={authUser && authUser.lastName}
                   required
                 />
               </div>
@@ -44,6 +48,7 @@ export function MyAccount() {
                   name="prenom"
                   type="text"
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  defaultValue={authUser && authUser.firstName}
                   required
                 />
               </div>
@@ -60,6 +65,7 @@ export function MyAccount() {
                   name="email"
                   type="email"
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  defaultValue={authUser && authUser.email}
                   required
                 />
               </div>

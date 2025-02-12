@@ -55,16 +55,16 @@ export default function ProjectsCreate() {
     toast.success("Projet ajouté");
   };
 
+  console.log("clients ::: ", clients);
+
   const clientsFormatted = clients.map((x) => {
-    const company = companies.find(
-      (company) => company.id === x.company_linked
-    );
+    const company = companies.find((company) => company.id === x.company);
     return {
       id: x.id,
-      companyId: x.company_linked,
-      label: `${company ? company.entreprise : "Entreprise inconnue"} - ${
-        x.nom_du_client
-      } ${x.prenom_du_client}`,
+      companyId: x.entreprise,
+      label: `${company ? company.tradeName : "Entreprise inconnue"} - ${
+        x.firstName
+      } ${x.lastName}`,
     };
   });
 

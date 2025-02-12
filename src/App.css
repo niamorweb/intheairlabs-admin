@@ -47,12 +47,24 @@
     @apply w-fit flex items-center justify-center gap-2 cursor-pointer py-3 px-4 bg-custom-primary text-white rounded-full hover:brightness-[125%] duration-150;
   }
 
+  .btn-primary:disabled {
+    @apply cursor-not-allowed bg-custom-light-grey hover:brightness-[95%];
+  }
+
   .btn-secondary {
     @apply w-fit self-end flex items-center justify-center gap-2 cursor-pointer py-3 px-4 bg-custom-secondary text-white rounded-full hover:brightness-[95%] duration-150;
   }
 
+  .btn-secondary:disabled {
+    @apply cursor-not-allowed bg-custom-grey hover:brightness-[95%];
+  }
+
+  .btn-outline {
+    @apply w-fit self-end flex items-center justify-center gap-2 cursor-pointer py-3 px-4 text-custom-black border-custom-grey border rounded-full hover:bg-custom-very-light-grey duration-150;
+  }
+
   .btn-cancel {
-    @apply w-full cursor-pointer py-3 px-4 bg-custom-very-light-grey text-custom-dark-grey rounded-full;
+    @apply w-full cursor-pointer py-3 px-4 bg-custom-light-grey text-custom-dark-grey rounded-full;
   }
 
   .required_input_label::after {

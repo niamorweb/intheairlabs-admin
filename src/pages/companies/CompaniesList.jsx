@@ -126,7 +126,10 @@ export function CompaniesList() {
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
             >
-              <td className="px-4 py-4 border-b border-gray-200">
+              <td
+                onClick={(e) => e.stopPropagation()}
+                className="px-4 py-4 border-b border-gray-200"
+              >
                 <div className="flex items-center justify-center">
                   <input
                     className="size-4"
@@ -139,7 +142,7 @@ export function CompaniesList() {
               <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
 
               <td className="px-4 py-4 border-b border-gray-200">
-                <img className="size-6" src={x.logo} alt="" />
+                <img className="w-6" src={x.logo} alt="" />
               </td>
               <td className="px-4 py-4 border-b border-gray-200">
                 {x.tradeName}

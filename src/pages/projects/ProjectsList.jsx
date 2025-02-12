@@ -110,6 +110,23 @@ export function ProjectsList() {
     }
   };
 
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i));
+    } else {
+      setSelectedRows([]);
+    }
+    setSelectAll(e.target.checked);
+  };
+
+  const handleRowSelect = (e, index) => {
+    const newSelectedRows = e.target.checked
+      ? [...selectedRows, index]
+      : selectedRows.filter((id) => id !== index);
+    setSelectedRows(newSelectedRows);
+    setSelectAll(newSelectedRows.length === currentItems.length);
+  };
+
   return (
     <div className="w-full flex flex-col gap-10">
       <div className="flex items-center justify-between w-full">
@@ -134,6 +151,16 @@ export function ProjectsList() {
       <table className="min-w-full table-auto border-collapse border border-gray-200">
         <thead className="bg-custom-light-grey">
           <tr>
+            <th>
+              <div className="flex items-center justify-center">
+                <input
+                  type="checkbox"
+                  className="size-4"
+                  checked={selectAll}
+                  onChange={handleSelectAll}
+                />
+              </div>
+            </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               ID
             </th>
@@ -211,6 +238,21 @@ export function ProjectsList() {
               key={i}
               className="hover:bg-gray-50 cursor-pointer"
             >
+              <td
+                onClick={(e) => e.stopPropagation()}
+                className="px-4 py-4 border-b border-gray-200"
+              >
+                <div className="flex items-center justify-center">
+                  <input
+                    className="size-4"
+                    type="checkbox"
+                    checked={selectedRows.includes(i)}
+                    onChange={(e) => {
+                      handleRowSelect(e, i);
+                    }}
+                  />
+                </div>
+              </td>
               <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
               <td className="px-4 py-4 border-b border-gray-200">{x.name}</td>
               <td className="px-4 py-4 border-b border-gray-200">

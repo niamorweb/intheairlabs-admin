@@ -124,10 +124,10 @@ export function ClientsList() {
                 ID
               </th>
               <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-                Nom du client
+                Nom
               </th>
               <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
-                Prénom du client
+                Prénom
               </th>
               <th class="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
                 Numéro de tél
@@ -149,13 +149,18 @@ export function ClientsList() {
                 key={i}
                 class=" hover:bg-gray-50 cursor-pointer duration-150"
               >
-                <td className="px-4 py-4 border-b border-gray-200">
+                <td
+                  onClick={(e) => e.stopPropagation()}
+                  className="px-4 py-4 border-b border-gray-200"
+                >
                   <div className="flex items-center justify-center">
                     <input
                       className="size-4"
                       type="checkbox"
                       checked={selectedRows.includes(i)}
-                      onChange={(e) => handleRowSelect(e, i)}
+                      onChange={(e) => {
+                        handleRowSelect(e, i);
+                      }}
                     />
                   </div>
                 </td>

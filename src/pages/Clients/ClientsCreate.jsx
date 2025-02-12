@@ -36,7 +36,7 @@ export default function ClientCreate() {
 
   const companiesFormatted = companies.map((x) => ({
     id: x.id,
-    label: x.entreprise,
+    label: x.tradeName,
   }));
 
   return (
