@@ -2,20 +2,23 @@ import { ChevronRight } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Companies from "../../data/companies";
+import Select from "react-select";
+import Sectors from "../../data/sectors";
 
 export default function CompaniesEdit() {
   const location = useLocation();
-  const { id } = useParams(); // Récupère l'ID depuis l'URL
-  const companyFromState = location.state?.company; // Essaie d'obtenir l'objet `company` passé dans le state
+  const { id } = useParams();
+  const companyFromState = location.state?.company;
 
   // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Companies`
-  const company =
-    companyFromState || Companies.find((comp) => comp.id === parseInt(id));
+  const company = Companies.find((comp) => comp.id === parseInt(id));
   console.log("the company ::: ", company);
 
   if (!company) {
     return <div>Entreprise non trouvée</div>; // Si aucune entreprise n'est trouvée, afficher un message d'erreur
   }
+
+  console.log("company ::: ", company);
 
   const [formData, setFormData] = useState({
     siret: company.siret || "",
@@ -23,7 +26,7 @@ export default function CompaniesEdit() {
     legalName: company.legalName || "",
     hubspotId: company.hubspotId || "",
     phoneNumber: company.phoneNumber || "",
-    sector: company.sector || "",
+    sector: company.sector,
     tradeName: company.tradeName || "",
     logo: company.logo || null, // On stocke un fichier pour le logo
   });
@@ -48,6 +51,23 @@ export default function CompaniesEdit() {
     // Traitement de la soumission (exemple : envoyer les données à une API)
     console.log("Form submitted:", formData);
   };
+
+  const sectorsFormatted = Sectors.map((x) => ({
+    id: x.id,
+    label: x.label,
+  }));
+
+  console.log("sectorsFormatted ::: ", sectorsFormatted);
+  console.log("formData.sector ::: ", formData.sector);
+
+  const defaultSector = sectorsFormatted.find(
+    (sector) => sector.id === formData.sector
+  );
+  sectorsFormatted.forEach((sector) => {
+    console.log(sector.id);
+  });
+
+  console.log("defaultSector ::: ", defaultSector);
 
   return (
     <div className="flex flex-col items-start w-full gap-12 max-w-[700px]">
@@ -168,15 +188,20 @@ export default function CompaniesEdit() {
             <label htmlFor="sector" className="required_input_label">
               Secteur de l'entreprise
             </label>
-            <input
-              type="text"
-              id="sector"
-              name="sector"
-              value={formData.sector}
-              onChange={handleChange}
-              className="input"
-              placeholder="Entrez le secteur de l'entreprise"
-              required
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              isClearable
+              isSearchable
+              name="clientName"
+              defaultValue={defaultSector}
+              options={sectorsFormatted}
+              onChange={(selectedClient) => {
+                setFormData((prevData) => ({
+                  ...prevData,
+                  companyId: selectedClient ? selectedClient.id : "",
+                }));
+              }}
             />
           </div>
 

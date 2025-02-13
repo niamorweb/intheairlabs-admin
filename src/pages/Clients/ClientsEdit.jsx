@@ -5,6 +5,8 @@ import Clients from "../../data/clients";
 import "react-responsive-combo-box/dist/index.css";
 import Companies from "../../data/companies";
 import { Combobox } from "../../components/Combobox";
+import Select from "react-select";
+import companies from "../../data/companies";
 
 export default function ClientCreate() {
   const location = useLocation();
@@ -22,12 +24,11 @@ export default function ClientCreate() {
 
   const [formData, setFormData] = useState({
     id: client.id || "", // Ajouté pour correspondre à l'ID unique du client
-    nom_du_client: client.nom_du_client || "",
-    prenom_du_client: client.prenom_du_client || "",
-    telephone: client.telephone || "",
-    entreprise: client.entreprise || "",
-    derniere_modification: client.derniere_modification || "",
-    hubspot_id: client.hubspot_id || "",
+    firstName: client.firstName || "",
+    lastName: client.lastName || "",
+    phoneNumber: client.phoneNumber || "",
+    company: client.company || "",
+    hubspotId: client.hubspotId || "",
   });
 
   const handleChange = (e) => {
@@ -43,6 +44,15 @@ export default function ClientCreate() {
     // Traitement de la soumission (exemple : envoyer les données à une API)
     console.log("Form submitted:", formData);
   };
+
+  const companiesFormatted = companies.map((x) => ({
+    id: x.id,
+    label: x.tradeName,
+  }));
+
+  const defaultCompany = companiesFormatted.find(
+    (company) => company.id === formData.company
+  );
 
   return (
     <div className="flex flex-col items-start w-full gap-12">
@@ -86,7 +96,7 @@ export default function ClientCreate() {
               type="text"
               id="nom_du_client"
               name="nom_du_client"
-              value={formData.nom_du_client}
+              value={formData.firstName}
               onChange={handleChange}
               className="input"
               placeholder="Nom du client"
@@ -102,7 +112,7 @@ export default function ClientCreate() {
               type="text"
               id="prenom_du_client"
               name="prenom_du_client"
-              value={formData.prenom_du_client}
+              value={formData.lastName}
               onChange={handleChange}
               className="input"
               placeholder="Prénom du client"
@@ -118,7 +128,7 @@ export default function ClientCreate() {
               type="text"
               id="telephone"
               name="telephone"
-              value={formData.telephone}
+              value={formData.phoneNumber}
               onChange={handleChange}
               className="input"
               placeholder="Numéro de tél."
@@ -130,15 +140,30 @@ export default function ClientCreate() {
             <label htmlFor="entreprise" className="required_input_label">
               Nom de l'entreprise
             </label>
-            <input
+            {/* <input
               type="text"
               id="entreprise"
               name="entreprise"
-              value={formData.entreprise}
+              value={formData.company}
               onChange={handleChange}
               className="input"
               placeholder="Entreprise"
               required
+            /> */}
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              isClearable
+              isSearchable
+              name="clientName"
+              defaultValue={defaultCompany}
+              options={companiesFormatted}
+              onChange={(selectedClient) => {
+                setFormData((prevData) => ({
+                  ...prevData,
+                  companyId: selectedClient ? selectedClient.id : "",
+                }));
+              }}
             />
           </div>
 
@@ -150,7 +175,7 @@ export default function ClientCreate() {
               type="text"
               id="hubspot_id"
               name="hubspot_id"
-              value={formData.hubspot_id}
+              value={formData.hubspotId}
               onChange={handleChange}
               className="input"
               placeholder="Hubspot ID"

@@ -25,7 +25,7 @@ export function ClientsList() {
   };
 
   const formattedClients = Clients.map((client) => {
-    const company = Companies.find((x) => x.id === client.id);
+    const company = Companies.find((x) => x.id === client.company);
 
     return {
       ...client,
@@ -33,13 +33,13 @@ export function ClientsList() {
     };
   });
 
-  // Fonction pour filtrer les données en fonction du terme de recherche
   const filteredClients = formattedClients.filter((client) => {
     return (
       client.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       client.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       client.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      client.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (client.company &&
+        client.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
       client.hubspotId.toString().includes(searchTerm)
     );
   });

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Projects from "../../data/projects";
 import Clients from "../../data/clients";
 import Companies from "../../data/companies";
+import ProjectTypes from "../../data/projectTypes";
 import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -27,21 +28,25 @@ export function ProjectsList() {
   const formattedProjects = Projects.map((project) => {
     const client = Clients.find((x) => x.id === project.id);
     const company = client ? Companies.find((x) => x.id === client.id) : null;
+    const projectType = ProjectTypes.find((x) => x.id === project.projectType);
 
     return {
       ...project,
       client: client ? client.lastName + " " + client.firstName : null,
       company: company && company.tradeName,
+      projectType: projectType && projectType.label,
     };
   });
 
-  // Fonction pour filtrer les données
   const filteredProjects = formattedProjects.filter((project) => {
     return (
       project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.projectType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (project.projectType &&
+        project.projectType.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (project.client &&
+        project.client.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (project.company &&
+        project.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
       project.hubspotId.toString().includes(searchTerm) ||
       project.id.toString().includes(searchTerm)
     );

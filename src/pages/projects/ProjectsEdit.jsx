@@ -1,16 +1,19 @@
 import { ChevronRight, Upload, X } from "lucide-react";
 import React, { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import Companies from "../../data/companies";
+import Projects from "../../data/projects";
+import ProjectTypes from "../../data/projectTypes";
+import Clients from "../../data/clients";
+import Select from "react-select";
 
 export default function ProjectsEdit() {
   const location = useLocation();
   const { id } = useParams(); // Récupère l'ID depuis l'URL
   const companyFromState = location.state?.company; // Essaie d'obtenir l'objet `company` passé dans le state
 
-  // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Companies`
+  // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Projects`
   const company =
-    companyFromState || Companies.find((comp) => comp.id === parseInt(id));
+    companyFromState || Projects.find((comp) => comp.id === parseInt(id));
   console.log("the company ::: ", company);
 
   if (!company) {
@@ -18,12 +21,11 @@ export default function ProjectsEdit() {
   }
 
   const [formData, setFormData] = useState({
-    projectName: company.nom_du_projet || "",
-    hubspotProjectId: company.hubspot_id || "",
+    name: company.name || "",
+    hubspotId: company.hubspotId || "",
     description: company.description || "",
-    companyName: company.entreprise || "",
-    projectType: company.type_du_projet || "",
-    clientName: company.client || "",
+    projectType: company.projectType || "",
+    client: company.client || "",
     kmlFile: null,
   });
 
@@ -48,6 +50,34 @@ export default function ProjectsEdit() {
     console.log("Form submitted:", formData);
   };
 
+  const clientsFormatted = Clients.map((x) => ({
+    id: x.id,
+    label: `${x.firstName} ${x.lastName}`,
+  }));
+
+  const defaultClient = clientsFormatted.find((x) => x.id === formData.client);
+
+  const projectTypesFormatted = ProjectTypes.map((x) => ({
+    id: x.id,
+    label: x.label,
+  }));
+  projectTypesFormatted.forEach((projectType) => {
+    console.log(
+      `ID: ${projectType.id}, Type: ${typeof projectType.id}, Label: ${
+        projectType.label
+      }, Type: ${typeof projectType.label}`
+    );
+  });
+
+  console.log(
+    `tetetet: ${formData.projectType},  Type: ${typeof formData.projectType}`
+  );
+  console.log(formData);
+
+  const defaultProjectType = projectTypesFormatted.find(
+    (x) => x.id === formData.projectType
+  );
+
   return (
     <div className="flex flex-col items-start w-full gap-6">
       <div className="flex items-center gap-2">
@@ -70,7 +100,7 @@ export default function ProjectsEdit() {
             type="text"
             id="projectName"
             name="projectName"
-            value={formData.projectName}
+            value={formData.name}
             onChange={handleChange}
             className="input"
             placeholder="Entrez le nom du projet"
@@ -86,7 +116,7 @@ export default function ProjectsEdit() {
           <input
             type="text"
             name="hubspotProjectId"
-            value={formData.hubspotProjectId}
+            value={formData.hubspotId}
             onChange={handleChange}
             className="input"
             placeholder="Entrez le projectID de Hubspot"
@@ -109,7 +139,7 @@ export default function ProjectsEdit() {
         </div>
 
         {/* Company Name */}
-        <div>
+        {/* <div>
           <label className="required_input_label" htmlFor="companyName">
             Entreprise
           </label>
@@ -123,20 +153,25 @@ export default function ProjectsEdit() {
             placeholder="Sélectionnez l'entreprise"
             required
           />
-        </div>
+        </div> */}
 
         {/* Project Type */}
         <div>
           <label htmlFor="projectType">Type de projet</label>
-          <input
-            type="text"
-            id="projectType"
-            name="projectType"
-            value={formData.projectType}
-            onChange={handleChange}
-            className="input"
-            placeholder="Sélectionnez le type de projet"
-            required
+          <Select
+            className="basic-single"
+            classNamePrefix="select"
+            isClearable
+            isSearchable
+            name="clientName"
+            defaultValue={defaultProjectType}
+            options={projectTypesFormatted}
+            onChange={(x) => {
+              setFormData((prevData) => ({
+                ...prevData,
+                companyId: x ? x.id : "",
+              }));
+            }}
           />
         </div>
 
@@ -145,15 +180,20 @@ export default function ProjectsEdit() {
           <label className="required_input_label" htmlFor="clientName">
             Client
           </label>
-          <input
-            type="text"
-            id="clientName"
+          <Select
+            className="basic-single"
+            classNamePrefix="select"
+            isClearable
+            isSearchable
             name="clientName"
-            value={formData.clientName}
-            onChange={handleChange}
-            className="input"
-            placeholder="Sélectionnez le client"
-            required
+            defaultValue={defaultClient}
+            options={clientsFormatted}
+            onChange={(selectedClient) => {
+              setFormData((prevData) => ({
+                ...prevData,
+                companyId: selectedClient ? selectedClient.id : "",
+              }));
+            }}
           />
         </div>
 

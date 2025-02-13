@@ -1,6 +1,7 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
 import Companies from "../../data/companies";
+import Sectors from "../../data/sectors";
 import { Link, useNavigate } from "react-router-dom";
 
 export function CompaniesList() {
@@ -17,11 +18,22 @@ export function CompaniesList() {
     setCurrentPage(1);
   };
 
-  const filteredCompanies = Companies.filter((company) => {
+  const formattedCompany = Companies.map((company) => {
+    const sector = company
+      ? Sectors.find((x) => x.id === company.sector)
+      : null;
+
+    return {
+      ...company,
+      sector: sector ? sector.label : null,
+    };
+  });
+
+  const filteredCompanies = formattedCompany.filter((company) => {
     return (
       company.tradeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.sector.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      company.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (company.sector &&
+        company.sector.toLowerCase().includes(searchTerm.toLowerCase())) ||
       company.siret.toString().includes(searchTerm) ||
       company.hubspotId.toString().includes(searchTerm)
     );
@@ -112,6 +124,10 @@ export function CompaniesList() {
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               Numéro de tél.
             </th>
+
+            <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
+              SIRET
+            </th>
             <th className="px-4 py-3 border-b border-gray-300 text-left text-sm font-semibold text-gray-700">
               Hubspot ID
             </th>
@@ -140,7 +156,6 @@ export function CompaniesList() {
                 </div>
               </td>
               <td className="px-4 py-4 border-b border-gray-200">{x.id}</td>
-
               <td className="px-4 py-4 border-b border-gray-200">
                 <img className="w-6" src={x.logo} alt="" />
               </td>
@@ -150,7 +165,8 @@ export function CompaniesList() {
               <td className="px-4 py-4 border-b border-gray-200">{x.sector}</td>
               <td className="px-4 py-4 border-b border-gray-200">
                 {x.phoneNumber}
-              </td>
+              </td>{" "}
+              <td className="px-4 py-4 border-b border-gray-200">{x.siret}</td>
               <td className="px-4 py-4 border-b border-gray-200">
                 {x.hubspotId}
               </td>

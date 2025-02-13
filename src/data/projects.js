@@ -2,7 +2,7 @@ const Projects = [
   {
     id: 1,
     name: "Lorem Ipsum",
-    projectType: "Lorem",
+    projectType: 1,
     client: 1,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
@@ -11,7 +11,7 @@ const Projects = [
   {
     id: 2,
     name: "Dolor Sit Amet",
-    projectType: "Dolor",
+    projectType: 1,
     client: 2,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -20,7 +20,7 @@ const Projects = [
   {
     id: 3,
     name: "Consectetur Adipiscing",
-    projectType: "Adipiscing",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -29,7 +29,7 @@ const Projects = [
   {
     id: 4,
     name: "Eiusmod Tempor",
-    projectType: "Eiusmod",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -38,7 +38,7 @@ const Projects = [
   {
     id: 5,
     name: "Magna Aliqua",
-    projectType: "Magna",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -47,7 +47,7 @@ const Projects = [
   {
     id: 6,
     name: "Ut Enim Ad Minim",
-    projectType: "Minim",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -56,7 +56,7 @@ const Projects = [
   {
     id: 7,
     name: "Quis Nostrud Exercitation",
-    projectType: "Exercitation",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -65,7 +65,7 @@ const Projects = [
   {
     id: 8,
     name: "Ullamco Laboris Nisi",
-    projectType: "Laboris",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -74,7 +74,7 @@ const Projects = [
   {
     id: 9,
     name: "Excepteur Sint Occaecat",
-    projectType: "Sint",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -83,7 +83,7 @@ const Projects = [
   {
     id: 10,
     name: "Cupidatat Non Proident",
-    projectType: "Cupidatat",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -92,7 +92,7 @@ const Projects = [
   {
     id: 11,
     name: "Sunt In Culpa Qui",
-    projectType: "Culpa",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -101,7 +101,7 @@ const Projects = [
   {
     id: 12,
     name: "Officia Deserunt Mollit",
-    projectType: "Mollit",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -110,7 +110,7 @@ const Projects = [
   {
     id: 13,
     name: "Excepteur Velit Esse",
-    projectType: "Esse",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -119,7 +119,7 @@ const Projects = [
   {
     id: 14,
     name: "Culpa Qui Officia",
-    projectType: "Qui",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -128,7 +128,7 @@ const Projects = [
   {
     id: 15,
     name: "Adipiscing Elit",
-    projectType: "Elit",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -137,7 +137,7 @@ const Projects = [
   {
     id: 16,
     name: "Sunt Amet Esse",
-    projectType: "Amet",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -146,7 +146,7 @@ const Projects = [
   {
     id: 17,
     name: "Ut Adipiscing Cursus",
-    projectType: "Cursus",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -155,7 +155,7 @@ const Projects = [
   {
     id: 18,
     name: "Velit Esse Euismod",
-    projectType: "Euismod",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -164,7 +164,7 @@ const Projects = [
   {
     id: 19,
     name: "Proident Voluptate",
-    projectType: "Voluptate",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -173,7 +173,7 @@ const Projects = [
   {
     id: 20,
     name: "Non Excepteur Sint",
-    projectType: "Sint",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -182,7 +182,7 @@ const Projects = [
   {
     id: 21,
     name: "Amet Ipsum Dolor",
-    projectType: "Dolor",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -191,7 +191,7 @@ const Projects = [
   {
     id: 22,
     name: "Eiusmod Tempor Labore",
-    projectType: "Labore",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -200,7 +200,7 @@ const Projects = [
   {
     id: 23,
     name: "Adipiscing Consectetur",
-    projectType: "Consectetur",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -209,7 +209,7 @@ const Projects = [
   {
     id: 24,
     name: "Quis Dolore Amet",
-    projectType: "Dolore",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -218,7 +218,7 @@ const Projects = [
   {
     id: 25,
     name: "Reprehenderit Cillum",
-    projectType: "Cillum",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -227,7 +227,7 @@ const Projects = [
   {
     id: 26,
     name: "Ullamco Anim Excepteur",
-    projectType: "Anim",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -236,7 +236,7 @@ const Projects = [
   {
     id: 27,
     name: "Mollit Aliquip Ut",
-    projectType: "Aliquip",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -245,7 +245,7 @@ const Projects = [
   {
     id: 28,
     name: "Consequatur Ex Ea",
-    projectType: "Ea",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -254,7 +254,7 @@ const Projects = [
   {
     id: 29,
     name: "In Do Excepteur",
-    projectType: "Excepteur",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -263,7 +263,7 @@ const Projects = [
   {
     id: 30,
     name: "Duis Irure Excepteur",
-    projectType: "Irure",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -272,7 +272,7 @@ const Projects = [
   {
     id: 31,
     name: "Veniam Reprehenderit",
-    projectType: "Veniam",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -281,7 +281,7 @@ const Projects = [
   {
     id: 32,
     name: "Tempor Cillum Dolore",
-    projectType: "Tempor",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -290,7 +290,7 @@ const Projects = [
   {
     id: 33,
     name: "Labore Non Excepteur",
-    projectType: "Labore",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -299,7 +299,7 @@ const Projects = [
   {
     id: 34,
     name: "Sed Ut Perspiciatis",
-    projectType: "Sed",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -308,7 +308,7 @@ const Projects = [
   {
     id: 35,
     name: "Nostrud Exercitation Ullamco",
-    projectType: "Nostrud",
+    projectType: 1,
     client: 4,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
