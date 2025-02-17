@@ -10,8 +10,23 @@ export default function ProjectsEdit() {
   const location = useLocation();
   const { id } = useParams(); // Récupère l'ID depuis l'URL
   const companyFromState = location.state?.company; // Essaie d'obtenir l'objet `company` passé dans le state
+  const [files, setFiles] = useState([]);
 
-  // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Projects`
+  const handleFileChange = (event) => {
+    const selectedFiles = Array.from(event.target.files).map((file) => ({
+      name: file.name.split(".").slice(0, -1).join("."),
+      extension: file.name.split(".").pop(),
+      size: file.size,
+      type: file.type,
+    }));
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    console.log(selectedFiles); // Affiche les fichiers sélectionnés dans la console
+  };
+
+  const removeFileFromList = (index) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  };
+
   const company =
     companyFromState || Projects.find((comp) => comp.id === parseInt(id));
   console.log("the company ::: ", company);
@@ -77,6 +92,18 @@ export default function ProjectsEdit() {
   const defaultProjectType = projectTypesFormatted.find(
     (x) => x.id === formData.projectType
   );
+
+  const formatBytes = (bytes, decimals = 2) => {
+    if (bytes === 0) return "0 Bytes";
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  };
 
   return (
     <div className="flex flex-col items-start w-full gap-6">
@@ -213,6 +240,7 @@ export default function ProjectsEdit() {
         </div>
 
         <div></div>
+        <div></div>
         <div className="grid-cols-2 grid gap-6 mt-4">
           <button type="submit" className="btn-cancel">
             Annuler
@@ -229,54 +257,57 @@ export default function ProjectsEdit() {
         <div className="flex flex-col gap-10">
           <div className="w-full flex flex-col gap-3">
             <div className="flex flex-col gap-2">
-              <label className="required_input_label" htmlFor="kmlFile">
-                Fichier KML
-              </label>
+              <input
+                type="file"
+                multiple
+                className="hidden "
+                id="inputFiles"
+                onChange={handleFileChange}
+              />
               <button
-                type="submit"
+                onClick={() => document.getElementById("inputFiles").click()}
                 className="w-full cursor-pointer flex items-center gap-3 justify-center py-4 col-span-2 px-4 bg-custom-secondary-very-low-opacity hover:bg-custom-secondary-low-opacity duration-150 text-custom-secondary rounded-md focus:outline-none focus:ring-1 focus:ring-custom-secondary focus:ring-opacity-50"
               >
                 <Upload />
                 Choisir les fichiers
               </button>
             </div>
-            {/* <input
-              type="file"
-              id="kmlFile"
-              name="kmlFile"
-              onChange={handleChange}
-              className="input w-full"
-              required
-            /> */}
           </div>
 
           <div className="flex flex-col gap-4">
-            {[0, 1, 2].map(() => (
-              <div className="flex items-center gap-3">
-                <div className="grid grid-cols-2 items-center p-2 rounded-md flex-1 border border-custom-light-grey">
-                  <div className="pr-8 w-full">
-                    <input
-                      className="p-3 w-full focus:outline-custom-light-grey rounded-md "
-                      type="text"
-                      defaultValue="filename.pdf"
-                    />
+            {files &&
+              files.map((file, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="grid grid-cols-2 items-center p-2 rounded-md flex-1 border border-custom-light-grey">
+                    <div className="pr-8 w-full flex items-center gap-2">
+                      <input
+                        className="p-3 w-full focus:outline-custom-light-grey rounded-md "
+                        type="text"
+                        defaultValue={file.name}
+                      />
+                      <span className="text-custom-grey text-sm whitespace-nowrap">
+                        {formatBytes(file.size)}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span>Type de fichier</span>
+                      <select
+                        className="bg-custom-very-light-grey p-2 cursor-pointer rounded-md"
+                        name=""
+                        id=""
+                      >
+                        <option>{file.type}</option>{" "}
+                      </select>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span>Type de fichier</span>
-                    <select
-                      className="bg-custom-very-light-grey p-2 cursor-pointer rounded-md"
-                      name=""
-                      id=""
-                    >
-                      <option>PDF</option>{" "}
-                    </select>
-                  </div>
+                  <button
+                    onClick={() => removeFileFromList(i)}
+                    className="h-14 cursor-pointer aspect-square rounded-md flex items-center justify-center bg-custom-secondary-very-low-opacity text-custom-secondary"
+                  >
+                    <X />
+                  </button>
                 </div>
-                <button className="h-14 cursor-pointer aspect-square rounded-md flex items-center justify-center bg-custom-secondary-very-low-opacity text-custom-secondary">
-                  <X />
-                </button>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
 
