@@ -22,12 +22,13 @@ export default function CompaniesCreate() {
     label: x.label,
   }));
 
+  // Manage input value change with a case of input file type
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0], // On prend le premier fichier sélectionné
+        [name]: files[0],
       }));
     } else {
       setFormData((prevData) => ({

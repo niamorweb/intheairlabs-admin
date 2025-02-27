@@ -16,6 +16,7 @@ export default function ClientCreate() {
     companyId: null,
   });
 
+  // Manage useState fields with input name and input value
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -24,6 +25,7 @@ export default function ClientCreate() {
     }));
   };
 
+  // Form submission checking companyId presence
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.companyId) {

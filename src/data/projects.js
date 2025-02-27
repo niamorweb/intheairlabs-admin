@@ -7,6 +7,15 @@ const Projects = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
     hubspotId: "11223",
+    kml: "https://example.com",
+    files: [
+      {
+        name: "Filename",
+        extension: ".zip",
+        url: "https://",
+        type: "",
+      },
+    ],
   },
   {
     id: 2,

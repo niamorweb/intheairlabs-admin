@@ -10,20 +10,21 @@ import companies from "../../data/companies";
 
 export default function ClientCreate() {
   const location = useLocation();
-  const { id } = useParams(); // Récupère l'ID depuis l'URL
-  const clientFromState = location.state?.company; // Essaie d'obtenir l'objet `company` passé dans le state
+  const { id } = useParams();
+  const clientFromState = location.state?.company;
 
-  // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Companies`
+  // Find client from client list thanks to his id
   const client =
     clientFromState || Clients.find((comp) => comp.id === parseInt(id));
   console.log("the company ::: ", client);
 
+  // If no client founded, return a simple text
   if (!client) {
-    return <div>Entreprise non trouvée</div>; // Si aucune entreprise n'est trouvée, afficher un message d'erreur
+    return <div>Client non trouvé</div>;
   }
 
   const [formData, setFormData] = useState({
-    id: client.id || "", // Ajouté pour correspondre à l'ID unique du client
+    id: client.id || "",
     firstName: client.firstName || "",
     lastName: client.lastName || "",
     phoneNumber: client.phoneNumber || "",
@@ -31,6 +32,7 @@ export default function ClientCreate() {
     hubspotId: client.hubspotId || "",
   });
 
+  // If no client founded, return a simple text
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -41,15 +43,16 @@ export default function ClientCreate() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Traitement de la soumission (exemple : envoyer les données à une API)
     console.log("Form submitted:", formData);
   };
 
+  // Format all companies to match with Select component
   const companiesFormatted = companies.map((x) => ({
     id: x.id,
     label: x.tradeName,
   }));
 
+  // Find company among companies list using its id
   const defaultCompany = companiesFormatted.find(
     (company) => company.id === formData.company
   );

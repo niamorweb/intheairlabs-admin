@@ -9,7 +9,7 @@ export const Combobox = ({ placeholder = "", data = [], elementToDisplay }) => {
 
   const filterOptions = (term) => {
     const filtered = data.filter((item) => {
-      const itemValue = item[elementToDisplay]?.toLowerCase(); // Utilise elementToDisplay
+      const itemValue = item[elementToDisplay]?.toLowerCase();
       return itemValue && itemValue.includes(term.toLowerCase());
     });
 

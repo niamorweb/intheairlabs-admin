@@ -1,55 +1,44 @@
 import { Plus, ChevronRight, ChevronLeft, Search } from "lucide-react";
 import { useState } from "react";
-import Users from "../../data/users"; // Changement de "Projects" à "Users"
+import Users from "../../data/users";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function UsersList() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
-  const [currentPage, setCurrentPage] = useState(1); // Page actuelle
-  const itemsPerPage = 20; // Nombre d'éléments par page
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   const navigate = useNavigate();
 
-  // Fonction pour gérer la recherche
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Réinitialiser la page à 1 lors de la recherche
+    setCurrentPage(1);
   };
 
-  // Fonction pour filtrer les données en fonction du terme de recherche
   const filteredUsers = Users.filter((user) => {
-    // Changement de "Projects" à "Users"
     return (
-      user.nom.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de nom_du_projet à nom
-      user.prenom.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de prénom
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement d'email
-      user.numero_de_tel.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de numéro_de_tel
-      user.permission.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de permission
-      user.date_creation.toLowerCase().includes(searchTerm.toLowerCase()) || // Changement de date_creation
-      user.id.toString().includes(searchTerm) // Conversion de id en string pour comparaison
+      user.role === "admin" &&
+      (user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.id.toString().includes(searchTerm))
     );
   });
 
-  // Calculer les éléments à afficher pour la page actuelle
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredUsers.slice(
-    // Changement de "filteredProjects" à "filteredUsers"
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentItems = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Fonction pour passer à la page suivante
   const handleNextPage = () => {
     if (currentPage * itemsPerPage < filteredUsers.length) {
-      // Changement de filteredProjects à filteredUsers
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Fonction pour revenir à la page précédente
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -58,10 +47,8 @@ export default function UsersList() {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      // Sélectionner toutes les lignes de la page actuelle
-      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i)); // Met à jour la sélection avec toutes les lignes filtrées
+      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i));
     } else {
-      // Désélectionner toutes les lignes
       setSelectedRows([]);
     }
     setSelectAll(e.target.checked);
@@ -72,7 +59,7 @@ export default function UsersList() {
       ? [...selectedRows, index]
       : selectedRows.filter((id) => id !== index);
     setSelectedRows(newSelectedRows);
-    setSelectAll(newSelectedRows.length === currentItems.length); // Mettre à jour l'état selectAll si toutes les lignes filtrées sont sélectionnées
+    setSelectAll(newSelectedRows.length === currentItems.length);
   };
 
   return (
@@ -161,29 +148,20 @@ export default function UsersList() {
               </td>
               <td className="px-4 py-4 border-b border-gray-200">{user.id}</td>
               <td className="px-4 py-4 border-b border-gray-200">
-                {user.nom}
+                {user.lastName}
               </td>{" "}
-              {/* Changement de "nom_du_projet" à "nom" */}
               <td className="px-4 py-4 border-b border-gray-200">
-                {user.prenom}
+                {user.firstName}
               </td>{" "}
-              {/* Changement de "prenom" */}
               <td className="px-4 py-4 border-b border-gray-200">
                 {user.email}
               </td>{" "}
-              {/* Changement d'email */}
               <td className="px-4 py-4 border-b border-gray-200">
                 {user.numero_de_tel}
               </td>{" "}
-              {/* Changement de numéro_de_tel */}
               <td className="px-4 py-4 border-b border-gray-200">
                 {user.permission}
               </td>{" "}
-              {/* Changement de permission */}
-              <td className="px-4 py-4 border-b border-gray-200">
-                {user.date_creation}
-              </td>{" "}
-              {/* Changement de date_creation */}
             </tr>
           ))}
         </tbody>

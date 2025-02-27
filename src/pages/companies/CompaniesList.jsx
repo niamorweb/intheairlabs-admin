@@ -18,6 +18,7 @@ export function CompaniesList() {
     setCurrentPage(1);
   };
 
+  // Format companies adding their sector label instead thanks to their ID in "sector" field
   const formattedCompany = Companies.map((company) => {
     const sector = company
       ? Sectors.find((x) => x.id === company.sector)
@@ -29,6 +30,7 @@ export function CompaniesList() {
     };
   });
 
+  // Filtering companies comparing their fields with search input value
   const filteredCompanies = formattedCompany.filter((company) => {
     return (
       company.tradeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -86,7 +88,7 @@ export function CompaniesList() {
               placeholder="Rechercher.."
               className="py-3 pl-10 pr-3 flex items-center gap-2 rounded-full bg-custom-primary-very-low-opacity focus:outline-custom-grey"
               value={searchTerm}
-              onChange={handleSearch} // Mise à jour de l'état de recherche
+              onChange={handleSearch}
             />
             <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-custom-grey size-5" />
           </div>

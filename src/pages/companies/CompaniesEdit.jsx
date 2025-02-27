@@ -10,16 +10,16 @@ export default function CompaniesEdit() {
   const { id } = useParams();
   const companyFromState = location.state?.company;
 
-  // Si l'objet `company` n'est pas dans `location.state`, on le récupère dans `Companies`
   const company = Companies.find((comp) => comp.id === parseInt(id));
   console.log("the company ::: ", company);
 
   if (!company) {
-    return <div>Entreprise non trouvée</div>; // Si aucune entreprise n'est trouvée, afficher un message d'erreur
+    return <div>Entreprise non trouvée</div>;
   }
 
   console.log("company ::: ", company);
 
+  // Fill formData fields with real company value or a default value
   const [formData, setFormData] = useState({
     siret: company.siret || "",
     address: company.address || "",
@@ -28,15 +28,16 @@ export default function CompaniesEdit() {
     phoneNumber: company.phoneNumber || "",
     sector: company.sector,
     tradeName: company.tradeName || "",
-    logo: company.logo || null, // On stocke un fichier pour le logo
+    logo: company.logo || null,
   });
 
+  // Handle fields changes with input name,value,type,files and with a condition if the type is a file
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0], // On prend le premier fichier sélectionné
+        [name]: files[0],
       }));
     } else {
       setFormData((prevData) => ({
@@ -48,7 +49,6 @@ export default function CompaniesEdit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Traitement de la soumission (exemple : envoyer les données à une API)
     console.log("Form submitted:", formData);
   };
 

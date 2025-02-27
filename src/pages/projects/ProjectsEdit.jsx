@@ -8,8 +8,8 @@ import Select from "react-select";
 
 export default function ProjectsEdit() {
   const location = useLocation();
-  const { id } = useParams(); // Récupère l'ID depuis l'URL
-  const companyFromState = location.state?.company; // Essaie d'obtenir l'objet `company` passé dans le state
+  const { id } = useParams();
+  const companyFromState = location.state?.company;
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -20,7 +20,7 @@ export default function ProjectsEdit() {
       type: file.type,
     }));
     setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-    console.log(selectedFiles); // Affiche les fichiers sélectionnés dans la console
+    console.log(selectedFiles);
   };
 
   const removeFileFromList = (index) => {
@@ -49,7 +49,7 @@ export default function ProjectsEdit() {
     if (type === "file") {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0], // On prend le premier fichier sélectionné
+        [name]: files[0],
       }));
     } else {
       setFormData((prevData) => ({
@@ -61,7 +61,6 @@ export default function ProjectsEdit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Traitement de la soumission (exemple : envoyer les données à une API)
     console.log("Form submitted:", formData);
   };
 

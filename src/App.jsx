@@ -25,7 +25,9 @@ function App() {
       <Route
         path="/manage-users"
         element={
+          // ProtectedRoute is a kind of middleware to avoid to access to a page if the user isn't logged
           <ProtectedRoute>
+            {/* Layout is to keep the same nav/containers on every pages */}
             <Layout>
               <UsersList />
             </Layout>

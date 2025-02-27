@@ -3,47 +3,49 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 // import { useAuth } from "./context/AuthContext";
+import { jwtDecode } from "jwt-decode";
+import { getAnUser } from "../../api/usersApi";
+import { authLogin } from "../../api/authentification";
 
 export default function Login() {
   const navigate = useNavigate();
 
-  // const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, login } = useAuth();
 
+  // if user already authenticated => go to projects page
   if (authUser) {
     navigate("/projects");
   }
 
-  const handleLogin = () => {
-    // const userData = { email };
-    // login(userData);
+  const handleLogin = async () => {
+    const data = {
+      email: email,
+      password: password,
+    };
 
-    axios
-      .post(
-        "https://dummyjson.com/auth/login",
-        {
-          username: "emilys",
-          password: "emilyspass",
-          expiresInMins: 30, // optionnel, par défaut 60
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        // setAuthUser(response.data);
-        // setIsLoggedIn(true);
-        console.log(response.data);
-        login(response.data);
-        navigate("/projects");
-      })
-      .catch((error) => {
-        console.error("Erreur de connexion:", error);
-      });
+    // Login request
+    const loginResponse = await authLogin(data);
+
+    console.log("loginResponse  :: : :", loginResponse);
+
+    // Decode the access_token
+    const decodedAccessToken = jwtDecode(loginResponse.access_token);
+
+    console.log("decoded access token  :: : :", decodedAccessToken);
+
+    // Fetch the current user
+    const getUserResponse = await getAnUser(decodedAccessToken.user_id);
+
+    console.log("getUserResponse ::: ", getUserResponse);
+
+    const dataToStore = {
+      access_token: loginResponse.access_token,
+      user: getUserResponse,
+    };
+
+    login(dataToStore);
   };
 
   return (
@@ -76,6 +78,8 @@ export default function Login() {
                 type="password"
                 className="input"
                 placeholder="Entrez votre mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>

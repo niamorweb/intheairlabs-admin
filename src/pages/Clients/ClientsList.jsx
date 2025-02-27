@@ -1,30 +1,30 @@
 import { Plus, Filter, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Clients from "../../data/clients";
+import Users from "../../data/users";
 import Companies from "../../data/companies";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getClients } from "../../api/clientsApi";
+import { getUsers } from "../../api/usersApi";
 import toast from "react-hot-toast";
 import { useData } from "../../context/DataContext";
 
 export function ClientsList() {
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // État pour la barre de recherche
-  const [currentPage, setCurrentPage] = useState(1); // Page actuelle
-  const itemsPerPage = 20; // Nombre d'éléments par page
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   const { clients, users, projects, companies } = useData();
 
   const navigate = useNavigate();
 
-  // Fonction pour gérer la recherche
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Réinitialiser la page à 1 lors de la recherche
+    setCurrentPage(1);
   };
 
-  const formattedClients = Clients.map((client) => {
+  const formattedClients = Users.map((client) => {
     const company = Companies.find((x) => x.id === client.company);
 
     return {
@@ -35,28 +35,26 @@ export function ClientsList() {
 
   const filteredClients = formattedClients.filter((client) => {
     return (
-      client.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      client.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      client.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (client.company &&
-        client.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      client.hubspotId.toString().includes(searchTerm)
+      client.role === "client" &&
+      (client.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        client.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        client.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (client.company &&
+          client.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        client.hubspotId.toString().includes(searchTerm))
     );
   });
 
-  // Calculer les éléments à afficher pour la page actuelle
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredClients.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Fonction pour passer à la page suivante
   const handleNextPage = () => {
     if (currentPage * itemsPerPage < filteredClients.length) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Fonction pour revenir à la page précédente
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -65,25 +63,22 @@ export function ClientsList() {
 
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      // Sélectionner toutes les lignes de la page actuelle
-      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i)); // Met à jour la sélection avec toutes les lignes filtrées
+      setSelectedRows(Array.from({ length: currentItems.length }, (_, i) => i));
     } else {
-      // Désélectionner toutes les lignes
       setSelectedRows([]);
     }
     setSelectAll(e.target.checked);
   };
 
+  // Handle row selected checking if a row is checked and update selection.
   const handleRowSelect = (e, index) => {
     getClients();
     const newSelectedRows = e.target.checked
       ? [...selectedRows, index]
       : selectedRows.filter((id) => id !== index);
     setSelectedRows(newSelectedRows);
-    setSelectAll(newSelectedRows.length === currentItems.length); // Mettre à jour l'état selectAll si toutes les lignes filtrées sont sélectionnées
+    setSelectAll(newSelectedRows.length === currentItems.length);
   };
-
-  const notify = () => toast.success("Here is your toast.");
 
   return (
     <div className="w-full flex flex-col gap-10">
